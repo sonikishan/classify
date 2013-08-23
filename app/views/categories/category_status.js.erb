@@ -1,0 +1,7 @@
+<% if @category.active_status == true %>
+$('#category_info_<%= @category.id %>').html("<%= escape_javascript(render :partial => 'category_information',:locals => {:category => @category}) %>");
+<% else %>
+$('#category_info_<%= @category.id %>').html("<%= escape_javascript(render :partial => 'category_information',:locals => {:category => @category}) %>");
+<% end %>
+
+<%#= link_to "#{@category.account_active}",block_status_path(@category),:remote => true %>

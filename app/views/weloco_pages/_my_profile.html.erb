@@ -1,0 +1,60 @@
+<div id="my_profile_section" >
+<div class="filterbluediv">
+      </div>
+        <div class="listdiv">
+        <div class="orngboxdiv">
+          <div class="orngcontdiv">
+            <div class="boxfirs">
+              <%= image_tag "miji-user-icon.png" %> 
+              <%= current_user.address.blank? ? '-' : current_user.address %>
+            </div>
+            <div class="boxfirs">
+              <%= image_tag "miji-mob-icon.png" %>
+              <%= current_user.phone.blank? ? '-' : current_user.phone%>
+            </div>
+          </div>
+          <div class="butdiv">
+            <%= link_to 'Wijzig', edit_user_registration_path, class: 'buttorgbox' %>
+          </div>
+        </div>
+        <div class="orngboxdiv">
+          <div class="orngcontdiv">
+            <div class="boxsecnd">
+              <%= image_tag "miji-user-icon.png" %> Inloggegevens
+            </div>
+            <div class="boxsecnd">
+              <%= image_tag "miji-email-icon.png" %>
+              <%= current_user.email %>
+            </div>                    
+          </div>
+          <div class="butdiv">
+            <input type="submit" class="buttorgbox" id=""  value="Wijzig" name="Wijzig">
+          </div>
+        </div>
+        <div class="orngboxdiv">
+          <div class="orngcontdiv">
+            <div class="boxthird">
+              <%= image_tag "miji-email-icon.png" %> Email voorkeuren
+            </div>
+            <div class="boxthird noneimg"> Welke emails wilt u ontvangen
+            </div>                                        
+          </div>
+          <div class="butdiv">
+            <input type="submit" class="buttorgbox" id=""  value="Instellen" name="Wijzig">
+          </div>
+        </div>
+        <div class="orngboxdiv">
+          <div class="orngcontdiv">
+            <div class="boxthird">
+              <%= image_tag "logo-mijin.png" %> We Loco machtiging
+            </div>
+            <div class="boxthird noneimg"> Eenvoudiger betalen voor advertenties en mogelijkheden
+            </div>    
+          </div>
+          <div class="butdiv">
+            <input type="submit" class="buttorgbox" id=""  value="Informatie" name="Wijzig">
+          </div>
+        </div>
+      </div>
+    </div>
+    

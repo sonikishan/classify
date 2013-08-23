@@ -1,0 +1,21 @@
+<table id="admin_management">
+  <tr>
+    <th>Image</th>
+    <th>Title</th>
+    <th>Category</th>
+    <th>Price</th>
+    <th>Paid</th>
+    <th>Deleted</th>
+    <th></th>
+    <th></th>
+  </tr>
+ 
+  <% @advertisements.each do |advertisement| %>
+    <tr id="user_info_<%= advertisement.id %>" class="sort_paginate_ajax">
+      <%= render :partial => "advertisement_information",:locals => {:advertisement => advertisement} %>
+    </tr>
+  <% end %>
+</table>
+<div class="digg_pagination" id="advertisement_pagination">
+ <%= will_paginate @advertisements %>
+</div>

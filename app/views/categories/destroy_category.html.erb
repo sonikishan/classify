@@ -1,0 +1,64 @@
+<h3>Do you want to delete  <%= link_to "#{@count}", advertisement_list_path(@category),:target => "_blank" %> Advertisements?</h3>
+<%= form_for @category, :url => move_ads_path do |f| %>
+<div>
+	<%= f.label "Delete" %>
+	<%= f.radio_button :id ,true,:checked => 'checked',:id => "delete_category"  %>
+</div>
+<div>
+	<%= f.label "Move" %>
+	<%= f.radio_button :id ,false,:id => "move_category" %>
+</div>
+    <div id="move_category_ads" style="display:none;">
+      <fieldset>
+ 		<div style="width:100%">
+            <div style="float: left;">
+             <%= f.hidden_field "select_category_id",:value => @category.id %>
+            <%= f.select :id, Category.roots.collect {|x| [x.name, x.id]}, {}, :multiple => false,:size => 15, :selected => Category.roots.collect.first,:id => "advertisement_category_id" %>
+            </div> 
+            <div class="secondphase" id="second_phase" style="float: left;">
+              <%= render :partial => "advertisements/second_phase",:locals => {:child_category => @child_category} %>
+            </div>
+            <div class="thirdphase" id="third_phase" style="float: left;" >
+              <%= render :partial => "advertisements/third_phase" %>
+            </div>
+            </div>
+        </fieldset> 
+             
+             
+             <div>
+                <%= f.submit "Move" %>
+            </div>
+        
+      </div>
+    <div id="delete_category_ads">
+        <%= link_to 'Confirm Destroy', destroy_category_ads_path(@category) %>
+    </div>
+<% end %>
+
+   <script type="text/javascript">
+$('#category_name').val('');
+$('#advertisement_category_id').change(function(){
+    $.get('/first_phase/'+$(this).val(),function(data){
+        },"script");
+    $('#third_phase_selection').empty();
+});
+$('#second_phase_selection').change(function(){
+    $.get('/second_phase/'+$(this).val(),function(data){
+        },"script");
+    $('#third_phase_selection').empty();
+});
+$(document).ready(function(){ 
+    $("input[id='move_category']").click(function() {
+        var test = $(this).val();
+        $("div#move_category_ads").show();
+        $("div#delete_category_ads").hide();
+        
+    }); 
+    $("input[id='delete_category']").click(function() {
+        var test = $(this).val();
+        $("div#move_category_ads").hide();
+        $("div#delete_category_ads").show();
+        
+    }); 
+});
+</script>

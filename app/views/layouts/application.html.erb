@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WelocoDevise</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  
+  <%= csrf_meta_tags %>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".new_advertisement").formToWizard({ submitButton: 'CreateAd' })
+            $(".edit_advertisement").formToWizard({ submitButton: 'CreateAd' })
+        });
+    </script>
+</head>
+<body>
+  <% unless request.path == new_user_registration_path || request.path ==  contact_path || request.path == new_user_session_path || request.path == profile_path || request.path == new_advertisement_path || request.path == myads_path || request.path == myfavs_path  %>
+    <div class="shell">   
+    <% if user_signed_in? %>    
+      <% if current_user.role == "admin" %>
+        <%= render 'layouts/admin_header' %>       
+      <% elsif current_user.role == "super_user" %> 
+       <%= render 'layouts/superuser_header' %> 
+      <% else %>
+        <%= render 'layouts/header' %>              
+      <% end %>
+    <% else %>
+      <%= render 'layouts/header' %>    
+    <% end %>
+      <div class="container">
+        <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>" id="flash_message"> <%= value %> </div>
+        <% end %> 
+        <%= yield %>
+      </div>
+    </div>
+  <% end %>
+  <% if request.path == new_user_registration_path || request.path == contact_path || request.path == new_user_session_path || request.path == profile_path || request.path == new_advertisement_path || request.path == myads_path || request.path == myfavs_path  %>
+    <%= yield %>
+  <% end %>
+</body>
+</html>

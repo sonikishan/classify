@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <div style="margin:0 auto; width:610px; font-size: 14px;">
+    	<div style="border:none;">
+    		<a href="http://weloco.herokuapp.com/" style="border: none;">
+               <%= image_tag "http://weloco.herokuapp.com/assets/mail-header.png" %>
+            </a>
+    	</div>
+        <h1 style="font-family:Arial, Helvetica, sans-serif; font-size:21px; color:#000;">Hallo <span style="font-size:14px; font-family:'Times New Roman', Times, serif;">
+        	<% @user.name %>, </h1>
+        <p>Your Bid for Advertisement " <%= @ad.title %> " has been accepted by owner.</p>
+    </div>
+  </body>
+</html>

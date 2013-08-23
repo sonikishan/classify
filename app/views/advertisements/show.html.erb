@@ -1,0 +1,365 @@
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+      $('a[rel*=facebox]').facebox({
+        loadingImage : '/assets/loading.gif',
+        closeImage   : '/assets/close_button.png'
+      });
+
+    });
+
+    // $('#clear-fields').click(function($){ alert('hi');
+    //   $('#client_message').val('');
+    //   $('#client_email').val('');
+    //   $('#client_phone').val('');
+    // });
+</script>
+<script type="text/javascript">
+  $(function() {
+    
+    $('#carousel span').append('<%= image_tag "carousel_glare.png" %>');
+    $('#thumbs a').append('<%= image_tag "carousel_glare_small.png" %>'); 
+
+    $('#carousel').carouFredSel({
+      responsive: true,
+      circular: false,
+      auto: false,
+      items: {
+        visible: 1,
+        width: 200,
+        height: '56%'
+      }
+    });
+
+    $('#thumbs').carouFredSel({
+      responsive: true,
+      circular: false,
+      infinite: false,
+      auto: false,
+      prev: '#prev',
+      next: '#next',
+      items: {
+        visible: {
+          min: 2,
+          max: 6
+        },
+        width: 150,
+        height: '66%'
+      }
+    });
+
+    $('#thumbs a').click(function() {
+      $('#carousel').trigger('slideTo', '#' + this.href.split('#').pop() );
+      $('#thumbs a').removeClass('selected');
+      $(this).addClass('selected');
+      return false;
+    });
+
+    
+  });
+</script>
+
+<div class="maintitle">
+  <h1>
+    <%= @advertisement.title %>
+    <span><%= @advertisement.created_at.strftime("%b %d, %Y") %></span>
+  </h1> 
+  <div class="sliderdiv">
+    <div class="slidethumdiv">
+      <div id="carousel-wrapper">
+        <div id="carousel">
+           <% @advertisement.advertisement_images.each do |img| %>
+          <span id="pixar_<%= img.id%>" class="<%= img.id%> img"><%= image_tag(img.image, :size => "397x264") %></span>
+          <% end %>
+        </div>
+      </div>
+      <div id="thumbs-wrapper">
+        <div id="thumbs">
+          <% @advertisement.advertisement_images.each do |img| %>
+          <a href="#pixar_<%= img.id%>" ><%= image_tag(img.image, :size => "90x55",:rel => "facebox") %></a>
+          <% end %>
+        </div>
+        <a id="prev" href="#"></a>
+        <a id="next" href="#"></a>
+      </div>
+    </div>
+  </div>    
+  <div class="slidertext iphone">
+    <h3>Beschrijving <span>Volières</span></h3>
+    <p><%= raw(@advertisement.values_xml) %></p>                              
+  </div>          
+  <div class="footer">
+    <div class="footerlink">
+      <h1>Kenmerken</h1>
+        <ul>
+          <li><a href="#">Type</a></li>
+          <li><a href="#">Conditie</a></li>
+          <li><a href="#">Materiaal</a></li>
+        </ul>
+        <ul>
+          <li><a href="#">Volière</a></li>
+          <li><a href="#">Nieuw</a></li>
+          <li><a href="#">Aluminium</a></li>
+        </ul>
+    </div>
+    <div class="footercont">
+     
+      <%= link_to (image_tag("search_icon.jpg")+"Bekijk grote foto's"), "#",:id => "enlarge_img" %>
+     
+      <% if user_signed_in? and @advertisement.approved == true %>
+        <%= link_to (image_tag("logo-footer.png")+"Meld misbruik"), "#abuse-report", rel: "facebox" %> 
+      <% end %>  
+    </div>    
+  </div>
+</div>
+
+<!-- Abuse Report Popup div -->
+<div id="abuse-report" style="display:none">
+  <div class="mijnadediv">
+    <div class="logmeldiv">
+      <h1 id="logo"> <%= link_to (image_tag "logo.png"), root_path %></h1>
+      <h2>MELD MISBRUIK</h2>
+    </div>
+    <div class="meldbluediv">
+      <div class="melddivmain">
+        <p>Bij iedere melding van misbruik zullen wij nagaan of de melding geoorloofd is.<br>   Wanneer de misbruik meldende partij in haar gelijk wordt gesteld, dan zal worden besloten het betreffende document of gebruiker te verwijderen van de website.
+        </p>
+        <div class="meldtextdiv">
+          <%= form_tag(abuse_report_advertisement_path(@advertisement), :method => "post",) do %>
+            <%= select_tag(:pulldown, options_for_select([["Positive" , "1" ],["Negative", "2"]] )) %>
+            <%= text_area_tag :message, nil, :class => 'textarea1', :placeholder => "Enter your comments here" %>
+            <%= submit_tag "Verzenden", :class => "butorng" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bluebox">
+  <div class="regisrer_box"><h1>EUROKOOI</h1> 
+    1½ jaar actief op Marktplaats<br>
+    <%= rating_for @advertisement, "ratings" %>
+    <!--     <%= image_tag "star-small-org.png" %>
+    <%= image_tag "star-small-org.png" %>
+    <%= image_tag "star-small-wight.png" %>
+    <%= image_tag "star-small-wight.png" %>
+    <%= image_tag "star-small-wight.png" %><br/> --> 
+    
+    <% if @advertisement.user_id %>  
+      <% user = @advertisement.user_id %>
+      <% @ad_user = User.find(user) %>
+    <% end %>  
+  </div>
+  <div class="regisrer_box">
+    <h1><strong>€  <%= @advertisement.min_price %> to <%= @advertisement.max_price %></strong></h1>Alleen ophalen<br>
+  </div>
+  <div class="regisrer_box">
+    <%= image_tag "email-icon.png", :style => "float:left; margin:0 20px 0 0;" %>
+    <h3><%= link_to "E-mail", "#email-link", rel: "facebox" %></h3>
+</div>
+
+<!-- <div id="email-link" style="display:none">
+  <div class="mijnadediv">
+    <div class="logmeldiv">
+      <h1 id="logo"> <%= link_to (image_tag "logo.png"), root_path %></h1>
+    </div>
+    <div class="meldbluediv">
+      <div class="melddivmain">
+        <div class="meldtextdiv" style="text-align:center;">
+          <div class="userinfo">
+            <li style="list-style:none;"><b><i>Username: </i></b><%= @ad_user.name ? @ad_user.name : "NA" %></li>
+            <li style="list-style:none;"><b><i>E-mail: </i></b><%= @ad_user.email ? @ad_user.email : "NA" %></li>
+            <li style="list-style:none;"><b><i>Address: </i></b><%= @ad_user.address ? @ad_user.address : "NA" %></li>
+            <li style="list-style:none;"><b><i>Phone: </i></b><%= @ad_user.phone ? @ad_user.phone : "NA" %></li>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div id="email-link" style="display:none;">
+  <div class="poup">
+    <div class="mijnadediv">
+      <div class="bluetabdiv">
+        <div class="tabdiv">
+          <section class="tabs">
+            <ul class="tab-nav">      
+              <li class="active">
+                <% if user_signed_in? %>
+                  <%= link_to "Uitloggen", destroy_user_session_path, :method => :delete %>
+                <% else %>  
+                  <%= link_to "Inloggen", new_user_registration_path, id: "email_login_popup" %>
+                <% end %>
+              </li>
+            </ul>
+          </section>  
+        </div>
+      </div>
+      <div class="logmeldiv">
+        <h1 id="logo">
+          <%= link_to image_tag('logo.png'), root_path %>
+        </h1>        
+        <div class="toplinkcont" style="padding-top:40px;">
+          <%= image_tag 'blue_arrow.png' %><%= link_to 'Terug naar resultaten', root_path %>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="bluediv"></div>   
+      <div class="formmeldiv">
+        <div class="contactopnemenen">
+          <%= form_for @contact,:url => contact_advertiser_advertisement_path(@advertisement), :id => 'contact_advertiser', :method => "post" do |f| %>
+            <div class="contactopnemenenleft">
+              <h1>Contact opnemen met EUROKOOI</h1>
+              <%= f.text_area :message,:class => 'textarea12', :placeholder => "Enter your comments here", :required => true %>
+              <!-- <textarea class="textarea12" rows="" cols="" name="tbcChangesReq" placeholder="Enter your comments here"></textarea> -->
+              <div class="submdiv">
+                <%= submit_tag "Versturen", :class => "btorg" %>
+                <!-- <input type="submit" class="btorg" id=""  value="Inloggen" name="Wijzig"> -->
+                <input type="button" class="submdiv" id="clear-fields"  value="Annuleren" name="Wijzig">
+              </div>
+            </div>
+            <div class="contactopnemenenright">
+              <h1>Uw contactgegevens</h1>        
+              <div class="cotopdiv">
+                E-mailadres
+                <% if user_signed_in? %>
+                  <% email = current_user.email %>
+                  <%= f.email_field :email, :value => email, :class => 'formdiv', :required => true %>
+                <% else %>  
+                  <%= f.email_field :email, :class => 'formdiv', :placeholder => 'you@example.com', :required => true %>
+                <% end %>
+                <!-- <input type="text" placeholder="ew@UberDTPer.nl" tabindex="0" readonly="readonly" autocomplete="off" class="formdiv" id="Items_input"> -->
+              </div>
+              <div class="cotopdiv">
+                Telefoonnummer
+                <% if user_signed_in? %>
+                  <%= f.phone_field :phone, :value => current_user.phone, :class => 'formdiv', :required => true %>
+                <% else %>  
+                  <%= f.phone_field :phone,  :class => 'formdiv', :placeholder => '06 12345678', :required => true %>
+                <% end %>
+                <!-- <input type="text" placeholder="06 12345678" tabindex="0" readonly="readonly" autocomplete="off" class="formdiv" id="Items_input"> -->
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>    
+    </div>
+    <div class="mijnadediv2nd">
+      <div class="mijabotdiv">
+        <div class="mijbothome">
+          <%= image_tag 'homeicon.png' %> Homepagina
+        </div>
+        <p>Voor uw bescherming verloopt deze conversatie via onze server en 
+          worden e-mailadressen afgeschermd. Om bijvoorbeeld spam te
+          voorkomen en de veiligheid van handelen te vergroten, behoudt 
+          WELOCO zich het recht voor om verdachte conversaties te filteren 
+          en te staken.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="regisrer_box">Plaats bod <br>
+  <div class="bod">
+    <%= form_tag(bid_advertisement_path(@advertisement), :method => "post",) do %>
+      <%= text_field_tag :price, nil, :class => 'bod field', :placeholder=> "€" %>
+      <%= submit_tag "Plaats bod", :class => 'bod_btn' %>
+    <% end %>
+  </div> 
+  <!-- <div class="bod">
+    <input type="text" class="bod field" value="€" title="keywords here ..." />
+    <input type="button" class="bod_btn" value="Plaats bod"/>
+  </div> -->
+  <div class="prize">
+    <ul>
+      <% @bids = @advertisement.bids.order("id desc") %>
+      <% @bids.each do |bid| %>
+        <% if bid.confirmed_at %>
+          <li><%= get_username(bid.user_id) %></li>
+          <li>€ <%= bid.price %></li>
+          <li><%= bid.confirmed_at.strftime("%b %d, %Y") %></li>
+        <% end %>  
+      <% end %>
+    </ul>  
+  </div>  
+    <!--     <div class="prize">
+      <ul>
+        <li><a href="#">Pietje Puk </a></li>
+        <li><a href="#">€ 50,00</a></li>
+        <li><a href="#">10 feb. '13</a></li>
+        <li><a href="#">Bart    </a></li>
+        <li><a href="#">€ 52,00</a></li>
+        <li><a href="#">11 feb. '13</a></li>
+      </ul>     
+    </div> -->
+  </div>
+</div>        
+
+
+<!-- <p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @advertisement.title %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @advertisement.min_price %> to <%= @advertisement.max_price %>
+</p>
+
+<p>
+  <b>Image:</b>
+  <%= image_tag @advertisement.advertisement_images.blank? ? 'No Image' : @advertisement.advertisement_images.map {|i| i.image.url} %>
+</p>
+
+<p>
+  <b>Values xml:</b>
+  <%= @advertisement.values_xml %>
+</p>
+
+<p>
+  <b>Advertisement status:</b>
+  <%= @advertisement.advertisement_status_id %>
+</p>
+
+<p>
+  <b>Paid:</b>
+  <%= @advertisement.paid %>
+</p>
+
+<p>
+  <b>Deleted:</b>
+  <%= @advertisement.deleted %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @advertisement.user_id %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @advertisement.category_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_advertisement_path(@advertisement) %> |
+<%= link_to 'Back', advertisements_path %>
+-->
+<script type="text/javascript">
+$('#enlarge_img').click(function(e){
+  var id = $('.img').attr('class');
+  var id1 = id.split(' ');
+  jQuery.facebox(function() { 
+     $.get('/large_img/'+id1[0], function(data) { $.facebox(data) })
+     $('#facebox .popup .content').width('750px');
+     $('#facebox .popup .content').addClass('large_img_popup');
+     $('#facebox .close').addClass('facebox_close');
+  })
+});
+
+
+</script>

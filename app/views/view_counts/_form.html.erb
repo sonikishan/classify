@@ -1,0 +1,25 @@
+<%= form_for(@view_count) do |f| %>
+  <% if @view_count.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@view_count.errors.count, "error") %> prohibited this view_count from being saved:</h2>
+
+      <ul>
+      <% @view_count.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.number_field :amount %>
+  </div>
+  <div class="field">
+    <%= f.label :advertisement %><br />
+    <%= f.text_field :advertisement %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

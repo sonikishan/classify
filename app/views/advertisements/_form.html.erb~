@@ -1,0 +1,57 @@
+<%= form_for(@advertisement, :html => { :multipart => true }) do |f| %>
+  <% if @advertisement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@advertisement.errors.count, "error") %> prohibited this advertisement from being saved:</h2>
+
+      <ul>
+      <% @advertisement.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <fieldset>
+    <legend>Select Category</legend>
+    <!-- <%= f.label :category_id %> -->
+    <%= f.select :category_id, Category.roots.collect {|x| [x.name, x.id]}, {}, :multiple => false, :size => 15 %>   
+    
+
+
+  </fieldset>
+
+  <fieldset>
+    <legend>Advertise information</legend>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+
+    <%= f.label :values_xml %><br />
+    <%= f.text_area :values_xml %>
+
+    <%= f.label :price %><br />
+    <%= f.number_field :price %>
+
+    <%= f.label :image %><br />
+    <%= f.file_field :image %>
+
+  </fieldset>
+
+  <fieldset>
+    <legend>Adverise status</legend>
+    <%= f.label :advertisement_status_id %><br />
+    <%= f.number_field :advertisement_status_id %>
+
+    <%= f.label :paid %><br />
+    <%= f.check_box :paid %>
+
+    <%= f.label :deleted %><br />
+    <%= f.check_box :deleted %>
+  </fieldset>
+
+  <p>
+    <%= f.submit id: 'CreateAd' %>
+  </p> 
+
+<% end %>
+

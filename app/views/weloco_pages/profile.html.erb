@@ -1,0 +1,37 @@
+<h1 id="profile_management" class="hide_selectbox">Profile Management</h1>
+<div id="wrapper">
+  <div class="poup">
+    <div class="mijnadediv">
+      <div class="logdiv">
+        <h1 id="logo"><%= link_to image_tag('logo.png'), root_path %></h1>
+        <%= link_to image_tag("homeicon.png", class: 'homeicon'), root_path %>
+      </div>
+      <div class="tabdiv">
+        <section class="tabs">
+          <ul class="tab-nav">
+            <li class="tabb ads_management" id="my_ads">
+              <%= link_to 'Mijn advertenties', myads_path %>
+            </li>
+            <li class="tabb favourite_management" id="my_fav">
+             	<%= link_to 'Mijn favorieten','#', class: 'tabwitarrow',:remote => true %> 
+            </li>
+            <li class="tabb profile_management" id="my_profile">
+             	<%= link_to "Mijn profiel", '#', class: 'listtabmargin' ,:remote => true%>
+            </li>
+          </ul>
+        </section>
+      </div>
+        <div id="myprofile">
+          <%= render :partial => "my_profile" %>
+        </div>
+        <div id="myfav">
+          <%= render :partial => "myfavs" %>
+        </div>
+        <div id="myads">
+          <%= render :partial => "myads" %>
+        </div>
+      <div style="float:left; height:180px; ">
+      </div>
+    </div>
+  </div>
+</div>

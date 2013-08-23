@@ -1,0 +1,79 @@
+<!-- <h2>Sign in</h2>
+
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div>
+
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+  <% end -%>
+
+  <div><%= f.submit "Sign in" %></div>
+<% end %>
+
+<%= render "devise/shared/links" %>  -->
+
+<div id = "wrapper">
+  <div class = "poup">
+    <div class = "mijnadediv">
+      <div class = "logmeldiv">
+        <h1 id="logo"><%= link_to image_tag("logo.png"), root_path %></h1>
+        <%= link_to image_tag("close_button.png", :class => "closeicon"), '#' %>
+
+        <div class = "clearfix"></div>
+        <div class = "bluediv"></div>         
+
+        <div class = "formmeldiv">
+                  
+          <div class = "contn fortopmarg">
+            <h1>Login met je Weloco.com account</h1>
+            
+            <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+               
+             <%= f.email_field :email, class: "formdiv" , placeholder: "E-mail adres", autofocus: true %>                                        
+              <div class = "facbokdiv">
+                <div class="facbokcont">Login met jouw sociale netwerk</div>
+                <%= image_tag "faceboo_icon.png" %>  
+                <%= link_to 'Login met Facebook', '/auth/facebook/', :id => "facebook_connect"  %>
+                <!-- <input type="text" id="Items_input" class="" autocomplete="off" readonly="readonly" tabindex="0" placeholder="Login met Facebook"> -->            
+              </div>
+
+              <div class = "form2ndinpt">
+                <%= f.password_field :password, class: "formdiv", placeholder: "Wachtwoord" %>
+                <% if devise_mapping.rememberable? %>
+                    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+                  <% end %>
+                <div class = "comenttext">
+                  <% if devise_mapping.recoverable? && controller_name != 'passwords' %>
+                      <%= link_to "Wachtwoord vergeten?", new_password_path(resource_name) %><br />
+                  <% end %>
+                </div>
+                <div class = "submdiv">
+                  <%= f.submit "Inloggen", class: "btorg" %>
+                  <%= f.submit "Annuleren", class: "submdiv" %>
+                </div>              
+              </div>
+            <% end %> 
+          </div>
+        </div>      
+      </div>
+    </div>
+    <div class = "mijnadediv2nd">
+      <div class = "mijabotdiv">
+        <div class = "mijbothome"><%= image_tag "homeicon.png" %>Homepagina</div>
+        <p>
+          Voor uw bescherming verloopt deze conversatie via onze server en 
+          worden e-mailadressen afgeschermd. Om bijvoorbeeld spam te
+          voorkomen en de veiligheid van handelen te vergroten, behoudt 
+          WELOCO zich het recht voor om verdachte conversaties te filteren 
+          en te staken.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+

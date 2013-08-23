@@ -1,0 +1,6 @@
+<% if @sub_category.active_status == true %>
+$('#sub_category_child_status_<%= @sub_category.id %>').html("<%= escape_javascript(render :partial => 'sub_category_child',:locals => {:sub_category => @sub_category}) %>");
+<% else %>
+$('#sub_category_child_status_<%= @sub_category.id %>').html("<%= escape_javascript(render :partial => 'sub_category_child',:locals => {:sub_category => @sub_category}) %>");
+<% end %>
+

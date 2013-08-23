@@ -1,0 +1,482 @@
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Started GET "/" for 127.0.0.1 at 2013-08-06 16:56:27 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (106.4ms)
+Completed 500 Internal Server Error in 127ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 16:56:29 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (36.0ms)
+Completed 500 Internal Server Error in 75ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 16:56:29 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (55.5ms)
+Completed 500 Internal Server Error in 58ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 16:56:29 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (51.4ms)
+Completed 500 Internal Server Error in 53ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 16:56:29 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (85.8ms)
+Completed 500 Internal Server Error in 87ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 16:56:29 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (34.9ms)
+Completed 500 Internal Server Error in 36ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 16:56:29 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (34.5ms)
+Completed 500 Internal Server Error in 36ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 16:56:29 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (31.8ms)
+Completed 500 Internal Server Error in 33ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 16:56:30 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (71.9ms)
+Completed 500 Internal Server Error in 73ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 17:03:15 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (37.9ms)
+Completed 500 Internal Server Error in 39ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 17:03:15 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (35.6ms)
+Completed 500 Internal Server Error in 37ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 17:03:15 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (38.1ms)
+Completed 500 Internal Server Error in 39ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 17:03:15 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (92.8ms)
+Completed 500 Internal Server Error in 95ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 17:03:15 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (43.3ms)
+Completed 500 Internal Server Error in 44ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 17:03:15 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (35.3ms)
+Completed 500 Internal Server Error in 37ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 17:03:15 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (39.3ms)
+Completed 500 Internal Server Error in 40ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 17:03:15 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (82.2ms)
+Completed 500 Internal Server Error in 85ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 17:03:15 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (35.7ms)
+Completed 500 Internal Server Error in 37ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 17:03:15 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (83.0ms)
+Completed 500 Internal Server Error in 85ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 17:03:16 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (36.8ms)
+Completed 500 Internal Server Error in 38ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 17:03:16 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (31.3ms)
+Completed 500 Internal Server Error in 32ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 17:03:16 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (31.0ms)
+Completed 500 Internal Server Error in 32ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 17:03:16 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (74.4ms)
+Completed 500 Internal Server Error in 76ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 17:03:16 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (41.1ms)
+Completed 500 Internal Server Error in 42ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 17:03:16 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (39.6ms)
+Completed 500 Internal Server Error in 41ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 17:03:16 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (36.0ms)
+Completed 500 Internal Server Error in 38ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 17:03:16 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (74.1ms)
+Completed 500 Internal Server Error in 75ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 17:03:16 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (39.6ms)
+Completed 500 Internal Server Error in 41ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 17:03:16 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (33.2ms)
+Completed 500 Internal Server Error in 34ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 17:03:16 +0530
+Processing by WelocoPagesController#home as HTML
+  Rendered weloco_pages/home.html.erb within layouts/application (31.4ms)
+Completed 500 Internal Server Error in 32ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3: <head>
+    4:   <title>WelocoDevise</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8:     <script type="text/javascript">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3946277165856073367_40065960'
+
+

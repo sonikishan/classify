@@ -1,0 +1,36 @@
+<h1> Advertisement Title </h1>
+<table id="admin_management">
+<tr>
+	<th>Title</th>
+	<th></th>
+</tr>
+
+	<% if !@parent_ad.blank? %>
+		<% @parent_ad.each do |parent_ad| %>
+		<tr>
+				<td><%= parent_ad.title %></td>
+				<td><%= link_to 'Delete', advertisement_path(parent_ad),
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+		<% end %>
+	<% end %>
+	<% if !@child_ad.blank? %>
+		<% @child_ad.each do |child_ad| %>
+		<tr>
+				<td><%= child_ad.title %></td>
+				<td><%= link_to 'Delete', advertisement_path(child_ad),
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+		<% end %>
+	<% end %>
+	<% if !@sub_child_ad.blank? %>
+		<% @sub_child_ad.each do |sub_child_ad| %>
+		<tr>
+				<td><%= sub_child_ad.title %></td>
+				<td><%= link_to 'Delete', advertisement_path(sub_child_ad),
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    </tr>
+		<% end %>
+	<% end %>
+
+</table>

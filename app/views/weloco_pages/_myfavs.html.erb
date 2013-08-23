@@ -1,0 +1,67 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#Items').selectbox();
+        $('#Items2').selectbox();
+        $('#Items3').selectbox();
+        $('#Items4').selectbox();
+    });
+</script>
+<h1 id="favourite_management" class="hide_selectbox">Favourite Management</h1>
+
+		
+          <div id="my_fav_section">
+            <div class="filterdiv">
+            	<span>Filter op: </span>
+            	<div class="selectareawhite">
+            		<select name="Items" id="Items4" class="selectbox">
+            			<option value="opetion1">Rubriek</option>
+                        <option value="opetion1">CASA</option>
+                        <option value="opetion1">CASA</option>
+                    </select>
+                </div>
+                <div class="selectareablue">
+                	<select name="Items" id="Items" class="selectbox">
+                		<option value="opetion1">Rubriek</option>
+                        <option value="opetion1">CASA</option>
+                        <option value="opetion1">CASA</option>
+                    </select>
+                </div>
+                <!-- <div class="wis">Wis filter</div> -->
+            </div>
+            <% myfavIds = current_user.favorites.select(:advertisement_id) %>
+            <% @myfavads = Advertisement.where(:id => myfavIds) %>
+            
+            <% for myfavad in @myfavads %>
+           
+                <div class="listdiv topbod botbod">
+                    <div class="listing">
+                        <%= link_to image_tag(myfavad.advertisement_images.first.blank? ? 'No Image' : myfavad.advertisement_images.first.image.url, :size => "98x73"), myfavad %>
+                        <div class="titlebig">
+                            <%= truncate(myfavad.title, :length => 25) %>
+            		    </div>
+                        <div class="pricebig">
+                            Vraagprijs:€ <%= myfavad.price %>
+                            <ul>
+                                <li>
+                                    <a href="#">Reserveren</a>
+            				    </li>
+                                <li>
+                                    <%= link_to "Redigeren",edit_advertisement_path(myfavad) %>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pricebig">
+                            <ul>
+                                <li>
+                                    <a href="#" class="active">Neem contact op</a>
+                    		    </li>
+                      	        <li>
+                                    <%= link_to "Verwijder", favorite_advertisement_path(myfavad, type: "unfavorite"), :method => "put" %>
+                      	        </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            
+            <% end %>    
+            </div>      

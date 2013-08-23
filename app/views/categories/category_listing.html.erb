@@ -1,0 +1,22 @@
+<ul>
+<% @child_category.each do |category| %>
+	<% if category.active_status == true %>
+ <strong><li><%= link_to "#{category.name}",category_filtering_path(category) %></li></strong>
+	<% @sub_child_category  = [] %>
+	<% if !@child_category.blank? %>
+	  <% if !category.blank? %>
+	 	<% @sub_child_ids = category.child_ids %>
+		<% @sub_child_category << Category.where("id in (?)",@sub_child_ids) %>
+		<% @sub_child_category = @sub_child_category.flatten! %>
+		<ul>
+			<% @sub_child_category.each do |child_category| %>
+			<% if child_category.active_status == true %>
+			</li><%=link_to "#{child_category.name}",category_filtering_path(child_category) %></li><br />
+			<% end %>
+			<% end %>
+		</ul>
+	  <% end %>
+	<% end %>
+ <% end %>
+<% end %>
+</ul>

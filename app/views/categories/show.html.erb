@@ -1,0 +1,50 @@
+<!-- <p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @category.name %>
+</p>
+
+
+
+
+-->
+
+
+<!--<div class="leftmenu">            
+    <ul>
+        <% for category in Category.roots %>
+           <li><%= link_to category.name, category %></li>
+        <% end %>             	
+    </ul>                           
+</div>
+
+
+<div id = "imagaddiv">
+	<% for advertise in Advertisement.where('category_id' => @category.id) %>
+  <% advertise.advertisement_images.each do |img| %>
+	    <div class="adbox">
+        <%= link_to image_tag(img.image, :size => "90x55"), advertise %>
+        <h1><%= truncate(advertise.title, :length => 12) %> <span>€  <%= advertise.price %></span></h1>
+        <p><%= truncate(strip_tags(advertise.values_xml), :length => 12) %></p> 
+      </div>
+      <% end %>
+	<% end %>
+</div> -->
+<% if user_signed_in? %>
+<div class="leftmenu" style="width:100%;border: 1px solid;">
+  <% category_selected = @category.children %>
+  <% for first_generation in category_selected %>
+  <%# if first_generation.active_status == true %>
+    <div id="sub_category_<%= first_generation.id %>">
+      <%= render :partial => "sub_category",:locals => {:first_generation => first_generation} %>
+      </div>
+    <%# end %>
+  <% end %>
+</div>
+<div>
+  <%= link_to 'Edit', edit_category_path(@category) %> |
+  <%= link_to 'Back', categories_path %> 
+  </div>
+  <% else %>
+  <% end %>

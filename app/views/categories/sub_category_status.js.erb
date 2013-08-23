@@ -1,0 +1,8 @@
+<% if @first_generation.active_status == true %>
+$('#sub_category_<%= @first_generation.id %>').html("<%= escape_javascript(render :partial => 'sub_category',:locals => {:first_generation => @first_generation}) %>");
+
+<% else %>
+$('#sub_category_<%= @first_generation.id %>').html("<%= escape_javascript(render :partial => 'sub_category',:locals => {:first_generation => @first_generation}) %>");
+<% end %>
+
+<%#= link_to "#{@category.account_active}",block_status_path(@category),:remote => true %>

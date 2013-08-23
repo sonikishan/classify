@@ -1,0 +1,27 @@
+<% if !@child_category.nil? %>
+<%= select "advertisement", "category_id", @child_category.map {|x| [x.name, x.id]}, {}, :multiple => false, :size => 15,:id => "second_phase_selection" %>
+<% else %>
+<%= select "advertisement", "category_id",['']%>
+<% end %>
+<script type="text/javascript">
+$('#second_phase_selection').change(function(){
+    $.get('/second_phase/'+$(this).val(),function(data){
+        },"script");
+   $('#step0Next').click(function(){
+	if ($('#third_phase_selection').val() == null)
+	{
+		var status = "child"
+		$.get('/characteristics_list/'+$('#second_phase_selection').val()+'/'+status,function(data){
+        },"script");
+	}
+	else
+	{
+		var status = "sub_child"
+		$.get('/characteristics_list/'+$('#third_phase_selection').val()+'/'+status,function(data){
+        },"script");
+	}
+
+});
+    $('#third_phase_selection').empty();
+});
+</script>

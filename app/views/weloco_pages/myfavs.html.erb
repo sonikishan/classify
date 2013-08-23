@@ -1,0 +1,90 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#Items').selectbox();
+        $('#Items2').selectbox();
+        $('#Items3').selectbox();
+        $('#Items4').selectbox();
+    });
+</script>
+<h1 id="favourite_management" class="hide_selectbox">Favourite Management</h1>
+<div id="wrapper">
+	<div class="poup">
+		<div class="mijnadediv">
+			<div class="logdiv">
+				<h1 id="logo">
+					<%= link_to image_tag('logo.png'), root_path %>
+				</h1>
+                <%= link_to image_tag("homeicon.png", class: 'homeicon'), root_path %>
+            </div>
+            <div class="tabdiv">
+            	<section class="tabs">
+            		<ul class="tab-nav">
+            			<li class="tabb ads_management">
+            				<%= link_to 'Mijn advertenties', myads_path %>
+            			</li>
+                        <li class="tabb favourite_management">
+                        	<%= link_to 'Mijn favorieten', myfavs_path, class: 'tabwitarrow' %> 
+                        </li>
+                        <li class="tabb profile_management">
+                        	<%= link_to "Mijn profiel", profile_path, class: 'listtabmargin' %>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+            <div class="filterdiv">
+            	<span>Filter op: </span>
+            	<div class="selectareawhite">
+            		<select name="Items" id="Items4" class="selectbox">
+            			<option value="opetion1">Rubriek</option>
+                        <option value="opetion1">CASA</option>
+                        <option value="opetion1">CASA</option>
+                    </select>
+                </div>
+                <div class="selectareablue">
+                	<select name="Items" id="Items" class="selectbox">
+                		<option value="opetion1">Rubriek</option>
+                        <option value="opetion1">CASA</option>
+                        <option value="opetion1">CASA</option>
+                    </select>
+                </div>
+                <!-- <div class="wis">Wis filter</div> -->
+            </div>
+            <% myfavIds = current_user.favorites.select(:advertisement_id) %>
+            <% @myfavads = Advertisement.where(:id => myfavIds) %>
+            
+            <% for myfavad in @myfavads %>
+            <% myfavad.advertisement_images.each do |fav_ad| %>
+                <div class="listdiv topbod botbod">
+                    <div class="listing">
+                        <%= link_to image_tag(fav_ad.image, :size => "98x73"), myfavad %>
+                        <div class="titlebig">
+                            <%= truncate(myfavad.title, :length => 25) %>
+            		    </div>
+                        <div class="pricebig">
+                            Vraagprijs:€ <%= myfavad.price %>
+                            <ul>
+                                <li>
+                                    <a href="#">Reserveren</a>
+            				    </li>
+                                <li>
+                                    <a href="#" class="active">Verwijder</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pricebig">
+                            <ul>
+                                <li>
+                                    <a href="#" class="active">Neem contact op</a>
+                    		    </li>
+                      	        <li>
+                                    <%= link_to "Verwijder", favorite_advertisement_path(myfavad, type: "unfavorite"), :method => "put" %>
+                      	        </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+              <% end %>
+            <% end %>          
+        <div>    
+    </div>
+</div>

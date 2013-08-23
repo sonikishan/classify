@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Price:</b>
+  <%= @bid.price %>
+</p>
+
+<p>
+  <b>Confirmation token:</b>
+  <%= @bid.confirmation_token %>
+</p>
+
+<p>
+  <b>Confirmed at:</b>
+  <%= @bid.confirmed_at %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @bid.user %>
+</p>
+
+<p>
+  <b>Advertisement:</b>
+  <%= @bid.advertisement %>
+</p>
+
+
+<%= link_to 'Edit', edit_bid_path(@bid) %> |
+<%= link_to 'Back', bids_path %>

@@ -1,0 +1,27 @@
+<div id = "abuse_ads">
+<table id="admin_management">
+  <tr>
+    <th>Title</th>
+    <th>Message</th>
+    <th>Pulldown</th>
+    <th>User Name</th>
+    <th>Approved</th>
+    
+  </tr>
+  <% @advertisement_abuse.each do |advertisements| %>
+   
+    <tr id="abuse_ad_list">
+      <%= render :partial => "abuse_ad_list",:locals => {:advertisements => advertisements} %>
+    </tr>
+  
+  <% end %>
+</table>
+<div class="digg_pagination" id="abuse_Ad_pagination">
+ <%= will_paginate @advertisement_abuse %>
+</div>
+</div>
+<script type="text/javascript">
+  $(function() {
+    $('#abuse_ads .pagination a').attr('data-remote', 'true');
+  });
+</script>

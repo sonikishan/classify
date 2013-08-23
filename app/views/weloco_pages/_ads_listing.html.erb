@@ -1,0 +1,41 @@
+
+                <% @myads.each do |myad| %>
+                <% @abuse_ad = AbuseReport.where("advertisement_id = ?",myad) %>
+                    <div class="listdiv topbod botbod">
+                        <div class="listing">
+                		<%= link_to image_tag(myad.advertisement_images.first.blank? ? 'No Image' : myad.advertisement_images.first.image.url, :size => "98x73"), myad %>
+                		<div class="titlebig">
+                			<%= truncate(myad.title, :length => 25) %>
+                		</div>
+                		<div class="pricebig">
+                			€ <%= myad.min_price %> to <%= myad.min_price %>
+                			<ul>
+                				<li>
+                					<a href="#">Reserveren</a>
+                				</li>
+                                <li>
+                                	<%= link_to "Redigeren",edit_advertisement_path(myad) %>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pricebig">
+                            <ul>
+                                <li><%= myad.view_count.amount %></li>
+                                <li>Gezien</li>
+                            </ul>
+                        </div>
+                        <div class="pricebig">
+                        	<ul>
+                        		<li>
+                        			<a href="#" class="active">Neem contact op</a>
+                        		</li>
+                          	    <li>
+                          	    	<%= link_to 'Verwijder', myad, method: :delete, class: 'active', data: { confirm: 'Are you sure?' } %>
+                          	    </li>
+                            </ul>
+                        </div>
+                    </div>
+               
+            </div>
+            <% end %>
+            

@@ -1,0 +1,8 @@
+
+	<% if @status == "check" %>
+	   <%= label "characteristic","Multiple value" %><br />
+	   <%= select "characteristic","input_kind",[['selectbox'],['radiobutton']]%>
+	 <% else %>
+	   <%= label "characteristic","Single value" %><br />
+	   <%= select "characteristic","input_kind",[['checkbox'],['textbox'],['textarea']]%>
+	 <% end %>

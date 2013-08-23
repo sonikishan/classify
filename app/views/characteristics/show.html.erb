@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @characteristic.name %>
+</p>
+
+<p>
+  <b>Input kind:</b>
+  <%= @characteristic.input_kind %>
+</p>
+
+<p>
+  <b>Default values:</b>
+  <%= @characteristic.default_values %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @characteristic.category_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_characteristic_path(@characteristic) %> |
+<%= link_to 'Back', characteristics_path %>

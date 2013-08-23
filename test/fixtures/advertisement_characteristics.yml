@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  advertisement_id: MyString
+  : 1
+  characteristic_id: 1
+  value: MyString
+
+two:
+  advertisement_id: MyString
+  : 1
+  characteristic_id: 1
+  value: MyString

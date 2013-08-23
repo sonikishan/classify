@@ -1,0 +1,21 @@
+	
+      <td><%= link_to "#{user.name}",user_path(user) %></td>
+      <td><%= user.email %></td>
+      <td>
+      	<% if user.account_active == true %>
+      	<%= link_to "No",block_status_path(user),:remote => true %>
+      	<% else %>
+      	<%= link_to "Yes",block_status_path(user),:remote => true %>
+      	<% end %>
+      </td>
+         <td>
+            <% if user.block_ip == true %>
+            <%= link_to "Yes",block_ip_status_path(user),:remote => true %>
+            <% else %>
+            <%= link_to "No",block_ip_status_path(user),:remote => true %>
+            <% end %>
+      </td>
+      <td><%= user.role %></td>
+      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+      <td><%= link_to 'Destroy', user_path(user),
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>

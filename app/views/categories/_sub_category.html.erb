@@ -1,0 +1,43 @@
+<strong><h3><div style="width:100%">
+<div style="width:25%;float:left;background-color:#F6921E;"><%= first_generation.name %></div>
+  <% if first_generation.active_status == true %>
+   <div style="width:25%;float:left;;background-color:#F6921E;"> <%= link_to "Active",sub_category_status_path(first_generation),:remote => true %></div>
+   <div style="width:25%;float:left;;background-color:#F6921E;"> <%= link_to 'Edit', edit_category_path(first_generation) %></div>
+<div style="width:25%;float:left;;background-color:#F6921E;"> <%= link_to 'Destroy',destroy_category_path(first_generation), :id => "login_popup", :rel => "facebox"%></div>
+  <% else %>
+   <div style="width:25%;float:left;;background-color:#F6921E;"> <%= link_to "Deactive",sub_category_status_path(first_generation),:remote => true %></div>
+   <div style="width:25%;float:left;;background-color:#F6921E;"> <%= link_to 'Edit', edit_category_path(first_generation) %></div>
+<div style="width:25%;float:left;;background-color:#F6921E;"> <%= link_to 'Destroy',destroy_category_path(first_generation), :id => "login_popup", :rel => "facebox"%></div>
+   
+  
+  <% end %>
+ 
+</div></h3>
+</strong>
+
+  
+  <div class="last_phase_<%= first_generation.id %>" style="width:100%">
+    <% @descendants = first_generation.child_ids %>
+      <% if @descendants.blank? %>
+        
+        <strong><div style="width:100%;text-align:center;"> <%= "No subcategory" %></div></strong>
+        
+      <% else %>
+        <% for childs in @descendants %>
+          <% sub_category = Category.find(childs) %>
+          
+            
+              <% if sub_category.blank? %>
+              <div style="width:100%;text-align:center;"> <%= "No subcategory" %></div>
+              <% else %>
+                
+                  <div id="sub_category_child_status_<%= sub_category.id %>">
+                  <%= render :partial => "sub_category_child",:locals => {:sub_category => sub_category} %>
+                </div>
+                
+              <% end %>
+            
+          
+        <% end %>
+      <% end %>
+  </div>

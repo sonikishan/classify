@@ -1,0 +1,55 @@
+<h1 id="characteristics_management" class="hide_selectbox">Listing characteristics</h1>
+<%= form_for(@characteristic) do |f| %>
+  <% if @characteristic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@characteristic.errors.count, "error") %> prohibited this characteristic from being saved:</h2>
+
+      <ul>
+      <% @characteristic.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :category_id %><br />
+    <%= f.collection_select :category_id, Category.leaves, :id, :name, :prompt => "Select" %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field" >
+     <%= label_tag "Select input kind value" %>
+  
+      <%= check_box_tag "multipleselection",1 %>
+  </div>
+    <div class="field" id = "all_options">
+      <%= render :partial => "selectvalue" ,:locals => {:status => @status,:flag => @flag} %>
+    </div>
+  <div class="field">
+    <%= f.label :default_values %><br />
+    <%= f.text_area :default_values %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+$('#multipleselection').change(function(){
+  if ($('#multipleselection').is(':checked')) 
+  {
+    var status = "check";
+    $.get('/select_input_kind/'+status,function(data){
+          },"script");
+  }
+else
+  {
+    var status = "uncheck";
+    $.get('/select_input_kind/'+status,function(data){
+          },"script");
+  }
+});
+</script>

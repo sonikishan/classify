@@ -1,0 +1,33 @@
+<% if current_user.role == "admin" %>
+ <h3><strong><%= link_to 'New Category', new_category_path %></strong></h3>
+<center><h1 id="category_management">Category List</h1></center>
+ 
+
+<table id="admin_management">
+  <tr>
+    <th>Name</th>
+    <th>Attributes</th>
+    <th>Active Status</th>
+    <th></th>
+    <th></th>
+    
+  </tr>
+
+<% Category.roots.each do |category| %>
+
+<tr id="category_info_<%= category.id %>" class="sort_paginate_ajax">
+     <%= render :partial => "category_information",:locals => {:category => category} %>
+</tr>
+
+  
+<% end %>
+</table>
+
+<br />
+
+
+<div class="digg_pagination">
+ <%= will_paginate @categories , :inner_window => 1, :previous_label => 'Previous',:next_label => 'Next'%>
+</div>
+ 
+ <% end %>

@@ -1,0 +1,6 @@
+<%@id1 = f.object_name.gsub(/[^0-9]+/,'') %>
+
+<div class="photos" id="img_list_<%= @id1 %>">
+	<img style="height:100px; width:100px;" id="img_prev_<%= @id1 %>" src="#" alt="" />
+	<%= f.file_field :image, :onchange=>"readURL(this,#{@id1});",:class => "photo_for_ad_#{@id1}",:style => "opacity : 0;float: none;padding-bottom: 44px;padding-left: 83px;width: 0px;" %> 
+</div>

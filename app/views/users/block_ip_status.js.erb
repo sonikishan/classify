@@ -1,0 +1,7 @@
+<% if @user.block_ip == false %>
+$('#user_info_<%= @user.id %>').html("<%= escape_javascript(render :partial => 'user_information',:locals => {:user => @user}) %>");
+<% else %>
+$('#user_info_<%= @user.id %>').html("<%= escape_javascript(render :partial => 'user_information',:locals => {:user => @user}) %>");
+<% end %>
+
+<%#= link_to "#{@user.account_active}",block_status_path(@user),:remote => true %>

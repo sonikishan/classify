@@ -1,0 +1,41 @@
+<%# category = Category.find(params[:cat_id]) %>
+<% @chars = Characteristic.where(:category_id => 35) %>
+<div class= "characterestics-items">
+	<% @chars.each do |characteristic| %>
+	  <div class="cat_name">
+		<%= characteristic.name %>
+	  </div>
+	  <% if characteristic.input_kind == "selectbox" %>
+		  <% splited_options = characteristic.default_values.split(" ").collect {|i| "<option>#{i}</option>"}.join %>
+		  <div class="cat_select">
+		  	<%= select_tag "items", "#{splited_options}".html_safe %>
+		  </div>
+	  <% elsif characteristic.input_kind == "radiobutton" %>
+	  		 <% splited_options = characteristic.default_values.split(",").collect {|i| i }.join%>
+	  		 <% splited_options.split(' ').each do |i| %>
+	  		   <div class="cat_radio">
+		  		   	<%= label_tag "characteristic",i %>
+		  			<%= radio_button_tag  "characteristic", i%>
+	  			</div>
+	  		<% end %>
+	   <% elsif characteristic.input_kind == "checkbox" %>
+	   		<% splited_options = characteristic.default_values.split(",").collect {|i| i }.join%>
+	  		 <% splited_options.split(' ').each do |i| %>
+	  		   <div class="cat_checkbox">
+		  		   	<%= label_tag "characteristic",i %>
+		  			<%= check_box_tag  "characteristic", i%>
+	  			</div>
+	  		<% end %>
+	  	<% elsif characteristic.input_kind == "textbox" %>
+	  		<% splited_options = characteristic.default_values %>
+	  		<div class="cat_textbox">
+	  			<%= text_field_tag "characteristic","#{splited_options}".html_safe %>
+	  		</div>
+	  	<% elsif characteristic.input_kind == "textarea" %>
+	  		<% splited_options = characteristic.default_values %>
+	  		<div class="cat_textarea">
+	  			<%= text_area_tag "characteristic","#{splited_options}".html_safe %>
+	  		</div>
+	  <% end %>
+	<% end %>
+</div>

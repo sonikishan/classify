@@ -1,0 +1,30 @@
+  <div style="width:100%;">
+    <div id= "large_image" style="width:70%;float:left;">
+       <%= render :partial => "select_large_image" ,:locals => {:advertisementimage => @advertisementimage} %>
+    </div>
+   
+    <div style="width:30%;float:left">
+       <% @advertisement.advertisement_images.each do |img| %>
+        <div class="thumb_img">
+         <% if img.id == @advertisementimage.id %>
+            <a href="#images_<%= img.id%>" onclick = 'select_img(<%= img.id %>);' ><%= image_tag(img.image, :size => "90x55",:class => 'img_border',:id => "border_#{img.id}") %></a>
+          <% else %>
+           <a href="#images_<%= img.id%>" onclick = 'select_img(<%= img.id %>);' ><%= image_tag(img.image, :size => "90x55",:class => 'img_border_white',:id => "border_#{img.id}") %></a>
+         <% end %>
+          </div>
+       <% end %>
+    </div>
+ 
+  </div>
+      
+     
+  <script>
+  function select_img(image){
+    $.get('/select_large_image/'+image, function(data) {
+        },"script"); 
+    $('.thumb_img').each(function(){
+      $(this).children().children().removeClass('img_border').addClass('img_border_white');
+    })
+    $('#border_'+image).removeClass('img_border_white').addClass('img_border');
+  }
+  </script>

@@ -1,0 +1,95 @@
+<div style="margin:0 auto; width:610px; font-size: 14px;">
+	<div style="border:none;">
+		<a href="http://weloco.herokuapp.com/" style="border: none;">
+ 			<%= image_tag "http://weloco.herokuapp.com/assets/mail-header.png" %>
+ 		</a>
+	</div>
+	<h1 style="font-family:Arial, Helvetica, sans-serif; font-size:21px; color:#000;">Hallo 
+		<span style="font-size:14px; font-family:'Times New Roman', Times, serif;">
+			<%= @resource.name %>, Welkom bij
+		</span>
+		<span style="font-size:14px; font-family:'Times New Roman', Times, serif;">WELOCO</span>
+	</h1>
+	<div style="float:left; background:#eeeeee; width:580px; padding:10px;">
+		<div style="float:left; width:580px;">
+			<div style="float:left; font-weight:bold; font-family: 'Times New Roman', Times, serif; ">gebruikersnaam:
+			</div>
+			<div style="float:left; text-indent:10px;"><%= @resource.name %></div>
+		</div>
+		<div style="float:left; width:580px;">
+			<div style="float:left; font-weight:bold; font-family: 'Times New Roman', Times, serif; ">wachtwoord:
+			</div>
+			<div style="float:left; text-indent:10px;"><%= @resource.encrypted_password %></div>
+		</div>
+		<div style="float:left; width:580px; ">
+			<div style="float:left; font-weight:bold; font-family: 'Times New Roman', Times, serif; ">e-mail:
+			</div>
+            <div style="float:left; color:#0066cc; text-indent:10px;"><%= @resource.email %></div>
+        </div>
+    </div>
+    <div style="float:left; width:610px; font-family:Arial, Helvetica, sans-serif; font-size:12px;">
+        Uit veiligheidsoverwegingen zal uw account pas geactiveerd worden als u op onderstaande link klikt of de link naar uw browser kopiëert. 
+    </div>
+    <div style="float:left; width:580px; font-family:Arial, Helvetica, sans-serif; font-size:12px; ">
+    	<%= link_to 'Confirm my account', user_confirmation_url(:confirmation_token => @resource.confirmation_token) %>
+    </div>
+    <div style="float:left; width:580px; font-family:Arial, Helvetica, sans-serif; font-size:12px; ">Bedankt dat u gebruik maakt van WELOCO 
+    </div>
+    <div style="float:left; width:580px; font-family:Arial, Helvetica, sans-serif; font-size:12px; border-bottom:1px solid #cccccc; margin:10px 0; ">
+    </div>
+    <% cpath = "http://www.olx-nederland.com/help.php?invite=CRMregistration-NL_help&amp;a=99&amp;utm_source=crm_email&amp;utm_medium=email&amp;utm_content=help&amp;utm_campaign=registration" %>
+    <% dpath = "http://www.olx-nederland.com/contacts.php?invite=CRMregistration-NL_contact_us&amp;a=99&amp;utm_source=crm_email&amp;utm_medium=email&amp;utm_content=contact_us&amp;utm_campaign=registration" %>
+    <div style="float:left; width:580px; font-family:Arial, Helvetica, sans-serif; font-size:12px;">
+    	<%= link_to "Heeft u een vraag?", cpath %>
+    	<%= link_to "Neem contact met ons op", dpath %>
+    	Beantwoord deze e-mail niet.<br /> 
+    	Ontvangt u deze e-mail in uw spamfolder? Voeg support@weloco.nl toe aan uw lijst met contactpersonen 
+    </div>
+</div>
+
+
+
+
+
+<!-- <p>
+	<%= link_to (image_tag "header.png"), root_path %>
+</p>
+
+<h2>&nbsp; <strong>Hallo</strong> <%= @resource.name %>, Welkom bij WELOCO</h2>
+
+<div style="background:#eee;border:1px solid #ccc;padding:5px 10px;">gebruikersnaam: <%= @resource.name %></div>
+
+ <div style="background:#eee;border:1px solid #ccc;padding:5px 10px;">wachtwoord: <%= @resource.encrypted_password %></div> 
+
+<div style="background:#eee;border:1px solid #ccc;padding:5px 10px;">e-mail: <%= @resource.email %></a></div>
+
+<p>Uit veiligheidsoverwegingen zal uw account pas geactiveerd worden als u op onderstaande link klikt of de link naar uw browser kopi&euml;ert.</p>
+
+<table cellpadding="0" cellspacing="0" style="width:605px">
+	<tbody>
+		<tr>
+			<td>
+			<p>*<%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>*</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<table cellpadding="0" cellspacing="0" style="width:605px">
+	<tbody>
+		<tr>
+			<td>
+			<p>Bedankt dat u gebruik maakt van WELOCO</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<div style="background:#eee;border:1px solid #ccc;padding:5px 10px;">&nbsp;</div>
+
+<p><a href="http://www.olx-nederland.com/help.php?invite=CRMregistration-NL_help&amp;a=99&amp;utm_source=crm_email&amp;utm_medium=email&amp;utm_content=help&amp;utm_campaign=registration">Heeft u een vraag?</a> <a href="http://www.olx-nederland.com/contacts.php?invite=CRMregistration-NL_contact_us&amp;a=99&amp;utm_source=crm_email&amp;utm_medium=email&amp;utm_content=contact_us&amp;utm_campaign=registration">Neem contact met ons op</a>. Beantwoord deze e-mail niet.<br />
+Ontvangt u deze e-mail in uw spamfolder? Voeg support@weloco.nl toe aan uw lijst met contactpersonen</p>
+
+<p>&nbsp;</p>
+
+ -->

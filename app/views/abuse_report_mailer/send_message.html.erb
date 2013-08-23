@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>
+      <a href="http://weloco.herokuapp.com/" style="border: none;">
+        <%= image_tag "http://weloco.herokuapp.com/assets/mail-header.png" %>
+      </a>
+    </h1>
+    <p><u><strong>Hello,<%= @admin.name %></strong></u></p>
+      <ul>
+        <li><%= @message %></li>
+      </ul>
+    <p>You can Contact me  this Number <%= @phone %>.</p>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<h1 id="user_management" class="hide_selectbox">Users List</h1>
+<%= form_for @user do |f| %>
+
+
+  <% if @user.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited
+      this user from being saved:</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+ 
+  <div>
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
+
+  <div><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></div>
+  <div>
+    <%= f.label :role %><br />
+  <%= f.select :role,['admin','super_user','user'] %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+
+<% end %>

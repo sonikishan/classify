@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Amount:</b>
+  <%= @view_count.amount %>
+</p>
+
+<p>
+  <b>Advertisement:</b>
+  <%= @view_count.advertisement %>
+</p>
+
+
+<%= link_to 'Edit', edit_view_count_path(@view_count) %> |
+<%= link_to 'Back', view_counts_path %>

@@ -1,0 +1,75 @@
+<div id="wrapper"> 
+  <div class="poup">   
+    <div class="mijnadediv">
+    <div class="bluetabdiv">
+      <div class="tabdiv">
+        <section class="tabs">      
+          <ul class="tab-nav">
+            <% if user_signed_in? %>                  
+              <li>
+                <%= link_to "Uitloggen", destroy_user_session_path, :method => :delete %>
+              </li>
+                <% else %>  
+                  <li class="active">
+                    <%= link_to "Inloggen", new_user_registration_path %>
+                  </li>
+            <% end %>                
+          </ul>                  
+        </section>            
+      </div>
+    </div>
+    <div class="logmeldiv">
+      <h1 id="logo"><%= link_to image_tag("logo.png"), root_path %></h1>      	
+      <%= link_to image_tag("close_button.png", :class => 'closeicon'), '#' %>
+    	<div class="toplinkcont">
+        <%= image_tag "blue_arrow.png" %>
+        <%= link_to 'Terug naar resultaten', root_path %>
+      </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="bluediv"></div>
+
+    <div class="formmeldiv">
+      <div class="contactopnemenen">
+        <div class="contactopnemenenleft">
+          <h1>Contact opnemen met EUROKOOI</h1>
+          <textarea class="textarea12" rows="" cols="" name="tbcChangesReq" placeholder="Enter your comments here"></textarea>
+          <div class="submdiv">
+            <input type="submit" class="btorg" id=""  value="Inloggen" name="Wijzig"> 
+            <input type="submit" class="submdiv" id=""  value="Annuleren" name="Wijzig">
+          </div>
+        </div>
+        <div class="contactopnemenenright">
+          <h1>Uw contactgegevens</h1>                    
+					<div class="cotopdiv">
+            E-mailadres
+            <input type="text" placeholder="ew@UberDTPer.nl" tabindex="0" readonly="readonly" autocomplete="off" class="formdiv" id="Items_input">
+          </div>
+          <div class="cotopdiv">
+              Telefoonnummer
+              <input type="text" placeholder="06 12345678" tabindex="0" readonly="readonly" autocomplete="off" class="formdiv" id="Items_input">
+          </div>
+        </div>
+      </div>
+    </div>                  
+  </div>
+  <div class="mijnadediv2nd">
+    <div class="mijabotdiv">
+      <div class="mijbothome"><%= image_tag "homeicon.png" %> Homepagina</div>
+        <p>Voor uw bescherming verloopt deze conversatie via onze server en 
+           worden e-mailadressen afgeschermd. Om bijvoorbeeld spam te
+           voorkomen en de veiligheid van handelen te vergroten, behoudt 
+           WELOCO zich het recht voor om verdachte conversaties te filteren 
+           en te staken.
+        </p>
+      </div>
+    </div>
+    <!-- end of header -->
+   
+    <!-- container --> 
+    <!-- navigation Mobile Only-->
+    
+    <!-- navigation Mobile Only-->    
+  </div>
+</div>

@@ -1,0 +1,12 @@
+
+    <td><%= link_to "#{category.name}",category%></td>
+    <td><%= category.characteristics.blank? ? "-" : category.characteristics.map{ |i|i.name}.join(', ') %></td>
+    <td>
+    	<% if category.active_status == true %>
+      	<%= link_to "Yes",category_status_path(category),:remote => true %>
+      	<% else %>
+      	<%= link_to "No",category_status_path(category),:remote => true %>
+      	<% end %>
+    </td>
+    <td><%= link_to 'Edit', edit_category_path(category) %></td>
+    <td><%= link_to 'Destroy',destroy_category_path(category), :id => "login_popup", :rel => "facebox"%></td>

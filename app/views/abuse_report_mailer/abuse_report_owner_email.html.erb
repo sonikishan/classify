@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>
+      <a href="http://weloco.herokuapp.com/" style="border: none;">
+        <%= image_tag "http://weloco.herokuapp.com/assets/mail-header.png" %>
+      </a>
+    </h1>
+    <p><u><strong>Blocked Advertise</strong></u></p>
+    <p>
+    	Your advertisement <%= link_to @ad.title, @url %> has been blocked due to abuse reports 
+    	Please contact site Admin
+    </p>
+  </body>
+</html>

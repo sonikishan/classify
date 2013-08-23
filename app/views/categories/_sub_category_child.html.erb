@@ -1,0 +1,14 @@
+			<div style="width:100%">	
+				<div style="width:25%;float:left">  <%= sub_category.name %></div>
+				<% if sub_category.active_status == true %>
+   <div style="width:25%;float:left">   <%= link_to "Active",sub_category_child_status_path(sub_category),:remote => true %></div>
+    <div style="width:25%;float:left">   <%= link_to 'Edit', edit_category_path(sub_category) %></div>
+    <div style="width:25%;float:left">    <%= link_to 'Destroy',destroy_category_path(sub_category), :id => "login_popup", :rel => "facebox"%></div>
+  <% else %>
+   <div style="width:25%;float:left">   <%= link_to "Deactive",sub_category_child_status_path(sub_category),:remote => true %></div>
+   <div style="width:25%;float:left">   <%= link_to 'Edit', edit_category_path(sub_category) %></div>
+    <div style="width:25%;float:left">    <%= link_to 'Destroy',destroy_category_path(sub_category), :id => "login_popup", :rel => "facebox"%></div>
+  <% end %>
+</div>
+                 
+                 

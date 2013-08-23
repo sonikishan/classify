@@ -1,0 +1,41 @@
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+      $('a[rel*=facebox]').facebox({
+        loadingImage : '/assets/loading.gif',
+        closeImage   : '/assets/close_button.png'
+      })
+    })
+</script>
+
+<div id="header">
+  <h1 id="logo">
+    <%= link_to image_tag('logo.png'), root_path %>
+  </h1>
+  <div class="social">
+    <%= image_tag "twitter.png" %>
+    <%= image_tag "in.png" %>
+    <%= image_tag "facebook.png" %>
+  </div>
+</div>
+<div class="headorng">
+  <%= image_tag "homeicon.png" %>
+
+    <div class="tabdiv" style='margin-top: 57px;'>
+    <section class="tabs">
+      <ul class="tab-nav">
+        <% if user_signed_in? %>
+        <li class="user_management"><%= link_to 'User Management', users_path,:id => "user_management" %></li>
+          <li class="advertisement_management"><%= link_to 'Advertisement',advertisements_path,:id => 'advertisement_management' %></li>
+          <li class="category_management"><%= link_to 'Category', categories_path,:id => 'category_management'%></li>
+          <li class="characteristics_management"><%= link_to 'Characteristics', characteristics_path,:id =>'characteristics_management' %></li>
+          <li><%= link_to "Uitloggen", destroy_user_session_path, :method => :delete ,:id => 'advertisement_management'%></li>
+        <% end %>
+      </ul>
+    </section>
+  </div>
+
+
+</div>
+
+
+  

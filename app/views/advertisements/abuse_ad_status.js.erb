@@ -1,0 +1,6 @@
+
+<% if @advertisement.approved == true %> 
+$("#abuse_ad_list").html("<%= escape_javascript(render :partial => "abuse_ad_list", :locals => { :advertisements => @advertisements}) %>")
+<% else %>
+$("#abuse_ad_list").html("<%= escape_javascript(render :partial => "abuse_ad_list", :locals => { :advertisements => @advertisements}) %>")
+<% end %>

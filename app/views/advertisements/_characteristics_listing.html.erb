@@ -1,0 +1,16 @@
+   <% if @characteristics_status.eql?("1") %>
+        <% @characteristics_list.each_with_index do |characteristic,i| %>
+            <%= fields_for "advertisement[advertisement_characteristics_attributes][#{i}]",@advertisement.advertisement_characteristics.build do |char| %>
+                 <% @characteristic = characteristic %>
+                 <% @i = i %>
+                 <%= render :partial => "advertisements/advertisement_characteristics", :locals => {:f => char} %>
+            <% end %>
+        <% end %>
+    <% end %>
+    <script type="text/javascript">
+  $(document).ready(function() {
+
+    $('#Items5').selectbox();
+    
+  });
+</script>

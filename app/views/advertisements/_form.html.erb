@@ -1,0 +1,261 @@
+<script type="text/javascript">
+  function readURL(input,id1) {
+
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#img_prev_'+id1).attr('src', e.target.result).height(100).width(100);
+
+        
+      };
+      
+      reader.readAsDataURL(input.files[0]);
+    }
+    else {
+      var img = input.value;
+      $('#img_prev').attr('src',img).height(200);
+    }
+    // $("#x").show().css("margin-right","10px");
+  }
+</script>
+
+<script type="text/javascript">
+  bkLib.onDomLoaded(function() {
+    new nicEditor({buttonList : ['bold','italic','underline','ul']}).panelInstance('advertisement_values_xml');
+  });
+  // bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#Items').selectbox();
+    $('#Items2').selectbox();
+    $('#Items3').selectbox();
+    $('#Items4').selectbox();
+
+    $('#Items6').selectbox();
+    $('#Items7').selectbox();
+    $('#Items8').selectbox();
+    $('#Items9').selectbox();
+    $('#Items10').selectbox();
+
+            $('input:radio').each(function () {
+                $(this).hide();
+                var label = $("label[for=" + '"' + this.id + '"' + "]").text();
+                $('<a title=" ' + label + ' " class="radio-fx ' + this.name + '" href="#"><span class="radio"></span></a>').insertAfter(this);
+            });
+            $('.radio-fx').on('click', function (e) {
+                $check = $(this).prev('input:radio');
+                var unique = '.' + this.className.split(' ')[1] + ' span';
+                $(unique).attr('class', 'radio');
+                $(this).find('span').attr('class', 'radio-checked');
+                $check.attr('checked', true);
+            }).on('keydown', function (e) {
+                if (e.which == 32) {
+                    $(this).trigger('click');
+                }
+            });
+
+   
+
+  });
+</script>
+<h1 id="advertise_management" class="hide_selectbox">Advertisement List</h1>
+<div id="wrapper">
+  <div class="aanmakenpoup">    
+    <div class="aanmakendiv">
+      <div class="bluetabdiv">
+        <div class="tabdiv">
+          <section class="tabs">
+            <ul class="tab-nav">
+              <% if user_signed_in? %>                  
+                <li>
+                  <%= link_to "Uitloggen", destroy_user_session_path, :method => :delete %>
+                </li>
+                <% else %>  
+                <li class="active">
+                  <%= link_to "Inloggen", new_user_registration_path %>
+                </li>
+              <% end %>
+            </ul>
+          </section>
+        </div>
+      </div>
+      <div class="logmeldiv">
+        <h1 id="logo"><%= link_to image_tag("logo.png"), root_path %></h1>
+        <%= link_to image_tag("homeicon.png", class: 'homeicon'), root_path %> 
+      </div>
+      <div class="clearfix"></div>
+      <div class="bluediv"></div>
+      <div class="formmeldiv formmeldivnew">
+        <%= form_for(@advertisement) do |f| %>
+          <% if @advertisement.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@advertisement.errors.count, "error") %> prohibited this advertisement from being saved:</h2>
+              <ul >  
+                <% @advertisement.errors.full_messages.each do |msg| %>
+                  <li ><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <fieldset>
+            <legend style="display:none">Kies uw rubriek</legend>  
+            <div class="selectbox3">
+              <legend>Kies groep</legend>
+              <%= f.select :category_id,  @category.all.map{|x| [ x.name,  x.id]}, {}, :multiple => false, :size => 15%>
+              <%#= f.hidden_field :category_id,:value => $('#advertisement_category_id').val() %>
+            </div>
+            <div class="selectbox3">
+              <legend>Kies subgroep</legend>
+              <div class="secondphase" id="second_phase" >
+                <%= render :partial => "second_phase" %>
+              </div>
+            </div>
+            <div class="selectbox3last">
+              <legend>Kies rubriek</legend>
+              <div class="thirdphase" id="third_phase" >
+                <%= render :partial => "third_phase" %>
+              </div>
+            </div> 
+          </fieldset>
+          <fieldset>
+           
+            <legend style="display:none">Advertentie <br/> aanmaken</legend>
+            <div class="prijsleft">
+              <!-- <input type="text" size="30" name="advertisement[title]" id="advertisement_title" style="background:#F1F1F2; width:252px;"> -->
+              <%= f.label :title, "Advertentie titel" %><br />
+              <%= f.text_field :title , :id => 'advertisement_title', :style => "background:#F1F1F2; width:252px;" %>
+              <div class="prijsdiv">
+                <h1>Prijs</h1>
+                <div class="liwid lowwid">
+                  <div class="radiodiv">
+                    <div id="skin_1" class="radiodiv" >
+                      <input type="radio" name="music" value="1" id="music-1" />
+                        <%= f.text_field :price,:class => "input2" %>
+                      <!--<span class="span"> tot</span> -->
+                       <%#= f.text_field :max_price,:class => "input2" %>
+                    </div>
+                  </div>
+                </div>
+                <div class="liwid lowwid">
+                  <div class="radiodiv">
+                    <div id="skin_1" class="radiodiv " >
+                      <input type="radio" name="music" value="1" id="music-1" />
+                      <span> Kies een prijsstelling <%= image_tag "yellow_button.png" %></span>
+                      <ul >
+                        <li><a href="#">Beiden</a></li>
+                        <li><a href="#">Nader overeen te komen</a></li>
+                        <li><a href="#">Op aanvraag</a></li>
+                        <li><a href="#">Zie omschrijving</a></li>
+                        <li><a href="#">Ruilen</a></li>
+                        <li><a href="#">Gratis</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="step1" class="projright">
+              <%= f.label :values_xml, "Advertentie tekst" %><br />
+              <%= f.text_area :values_xml, :class => "textareastep2", :style => "height:160px;" %>
+              
+              <div class="levediv">
+                <label for="advertisement_title">Leveringsvoorkeur</label>
+                <br>
+                <div class="selectareaoreng">
+                  <select name="Items" id="Items" class="selectbox">
+                    <option value="opetion1">Rubriek</option>
+                    <option value="opetion1">CASA</option>
+                    <option value="opetion1">CASA</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Below code is for Image upload  -->
+
+           <!--<%#= f.label :image, "Uploaden foto's" %><br /> -->
+            <!-- <div style="max-width: 100px; max-height: 100px; margin: 10px 0 0 0; clear: both;" class="fileupload-preview fileupload-exists thumbnail">
+              <img style="height:100px; width:100px;" id="img_prev" src="#" alt="" />
+            </div>
+            <div>-->
+              <%#= fields_for :advertisement_images do |ff| %>
+              <%#= render :partial => "advertisement_images", :locals => {:f => ff} %>
+                <!-- <%#= f.file_field :image %> -->
+                 <%# end %>
+                 <%#= link_to_add_fields "Add Images ", f, :advertisement_images %>
+                <!--<input id= "imgupload" type="file" onchange="readURL(this);">
+               
+            </div> -->
+            
+         <div class="uplodphoto">
+              <h3>Uploaden foto's</h3>
+              <div class="photomaindiv">
+                   <%= f.fields_for :advertisement_images,@advertisement.advertisement_images.new do |pc| %>
+                      
+                    <%= render :partial => "advertisements/advertisement_images", :locals => {:f => pc} %>
+                   <% end %>
+              </div>
+              <%= link_to_add_fields "", f, :advertisement_images %>
+            </div>
+            
+            <h3>Kenmerken</h3>
+            <div class="kenmdiv">
+              <div class="kemsubdiv">
+
+                <div id="characteristics_list" class="kenmdivgrybox">
+                    <%= render :partial => "advertisements/characteristics_listing", :locals => {:characteristics_status => @characteristics_status} %>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend style="display:none">Bevestig contact <br/> gegevens</legend>
+            <div class="step3div">        
+              <h1>Uw naam bij de advertentie</h1>
+              <input type="text" id="Items_input" class="formdiv" autocomplete="off" tabindex="0" > 
+              <h1>E-mailadres</h1>
+              <input type="text" id="Items_input" class="formdiv" autocomplete="off" tabindex="0" >    
+              <h1>Postcode</h1>
+              <input type="text" id="Items_input" class="formdiv" autocomplete="off" tabindex="0" >    
+              <div class="redidiv">
+                <div id="skin_1" class="radiodiv"  >
+                  <input type="radio" name="music" value="1" id="music-1" />                   <span class="span"> lk woon in Nederland</span>                      
+                </div>
+              </div>
+              <div class="redidiv redmarg">
+                <div id="skin_1" class="radiodiv"  >
+                  <input type="radio" name="music" value="1" id="music-1" />                   
+                  <span class="span"> Toon de kaart</span>                      
+                </div>
+              </div>    
+              <h1>Telefoonnummer</h1>                
+                <div class="form2ndinpt"><input type="text" id="Items_input" class="formdiv" autocomplete="off" tabindex="0" ></div>
+                <input type="submit" class="but" id=""  value="Plaats advertentie" name="Wijzig">
+            </div>
+          </fieldset>
+        <% end %>
+      </div> 
+    </div>        
+  </div>
+</div>  
+    
+
+
+
+
+<script type="text/javascript">
+$('#advertisement_category_id').change(function(){
+    $.get('/first_phase/'+$(this).val(),function(data){
+        },"script");
+$('#step0Next').click(function(){
+});
+    $('#third_phase_selection').empty();
+});
+$('#second_phase_selection').change(function(){
+    $.get('/second_phase/'+$(this).val(),function(data){
+        },"script");
+    $('#step0Next').click(function(){
+});
+});
+</script>

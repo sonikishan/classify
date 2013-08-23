@@ -1,0 +1,17 @@
+<% token = params[:confirmation_token] %>
+<% bid = Bid.where(:confirmation_token => token) %>
+<% if bid[0].id %>
+  <% @bid = Bid.find(bid[0].id) %>
+  <% handle_redirection(@bid) %>
+<% end %>
+
+
+
+
+
+<!-- <h1>New bid</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', bids_path %>
+ -->

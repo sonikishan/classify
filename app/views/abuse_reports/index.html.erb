@@ -1,0 +1,27 @@
+<h1>Listing abuse_reports</h1>
+
+<table>
+  <tr>
+    <th>Message</th>
+    <th>User</th>
+    <th>Advertisement</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @abuse_reports.each do |abuse_report| %>
+  <tr>
+    <td><%= abuse_report.message %></td>
+    <td><%= abuse_report.user %></td>
+    <td><%= abuse_report.advertisement %></td>
+    <td><%= link_to 'Show', abuse_report %></td>
+    <td><%= link_to 'Edit', edit_abuse_report_path(abuse_report) %></td>
+    <td><%= link_to 'Destroy', abuse_report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Abuse report', new_abuse_report_path %>

@@ -1,0 +1,23 @@
+
+<h3><strong><%= link_to 'New User', new_user_path %></strong></h3>
+<center><h1 id="user_management">Users List</h1></center>
+  <div style="float:right;margin-top: -35px;">
+  <%= form_tag users_path, :method => 'get', :id => "users_search" do %>
+    <%= text_field_tag :search, params[:search] ,:placeholder => "Enter username or Email" %>
+    <%= submit_tag "Search", :name => nil %>
+  </div>
+  <div id="users_listing">
+    <%= render :partial => "search_user",:locals => {:users => @users} %>
+  </div>
+  <% end %>
+
+
+
+
+ <script type="text/javascript">
+ $("#users_search input").keyup(function() {
+    $.get($("#users_search").attr("action"), $("#users_search").serialize(), null, "script");
+    return false;
+  });
+ </script>
+ 

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  price: 1
+  values_xml: MyText
+  advertisement_status_id: 1
+  paid: false
+  deleted: false
+  user: 
+  category: 
+
+two:
+  title: MyString
+  price: 1
+  values_xml: MyText
+  advertisement_status_id: 1
+  paid: false
+  deleted: false
+  user: 
+  category: 

@@ -1,0 +1,2 @@
+
+$("#characteristics_list").html("<%= escape_javascript(render :partial => "advertisements/characteristics_listing", :locals => { :characteristics_list => @characteristics_list,:characteristics_status => @characteristics_status,:advertisement => @advertisement}) %>")

@@ -1,0 +1,158 @@
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+      $('a[rel*=facebox]').facebox({
+        loadingImage : '/assets/loading.gif',
+        closeImage   : '/assets/close_button.png'
+      })
+    })
+</script>
+
+<div id="header">
+  <h1 id="logo">
+    <%= link_to image_tag('logo.png'), root_path %>
+  </h1>
+  <div class="social">
+    <%= image_tag "twitter.png" %>
+    <%= image_tag "in.png" %>
+    <%= image_tag "facebook.png" %>
+  </div>
+</div>
+<div class="headorng">
+  <%= image_tag "homeicon.png" %>
+  <div class="formdiv">
+    <%= form_tag root_path, :method => "get" do %>
+      <%= text_field_tag :search, params[:search], class: "field", placeholder: "keywords here.." %>
+      <label>
+        <select>
+          <option selected> Alle groepen </option>
+          <option>Short Option</option>
+          <option>This Is A Longer Option</option>
+        </select>
+      </label>
+      <input type="text" class="field narrow" value="9401HM" title="keywords here ..." />
+      <label>
+        <select class="small">
+          <option selected> Alle afstanden </option>
+          <option>Short Option</option>
+          <option>This Is A Longer Option</option>
+        </select>
+      </label>
+      <%= submit_tag "Zoek", :title => nil,:class => 'field narrow' %>
+      <!-- <input type="text" class="field narrow" value="Zoek" title="keywords here ..." /> -->
+    <% end %>
+  </div>
+  <div class="tabdiv">
+    <section class="tabs">
+      <ul class="tab-nav">
+        <% if user_signed_in? %>
+          <% if request.path.starts_with? "/advertisements" %>
+            <li><%= link_to ("Bewaar pagina"+image_tag("star-small-org.png")).html_safe, favorite_advertisement_path(@advertisement, type: "favorite"), :method => "put" %>
+            </li>
+          <% end %>   
+          <li><%= link_to 'Plaats advertentie', new_advertisement_path %></li>            
+          <li><%= link_to 'Mijn profiel', profile_path %></li>
+          <li><%= link_to "Uitloggen", destroy_user_session_path, :method => :delete %></li>
+          <% else %>  
+          <% if request.path.starts_with? "/category_filtering" %>
+          <li class="tabb"><a href="#">Grote foto's</a> </li>
+                <li class="tabb "><a href="#" class="tabmargin">Gallerij</a> </li>
+          <% end %>
+            <li class="active">
+              <%= link_to "Inloggen", new_user_registration_path, id: "login_popup", rel: "facebox" %>
+            </li>
+        <% end %>
+      </ul>
+    </section>
+  </div>
+
+
+  <div class="blackmain">
+    <div class="blacktab">
+      <% if !user_signed_in? %>
+      <% if request.path == root_path  %>
+        <div class="tablack">RUBRIEKEN</div>
+        <div class="tablackbig">
+          <ul>
+            <li class="tablack">NIEUWSTE ADVERTENTIES</li>
+          </ul>
+        </div>
+        <% elsif request.path.starts_with? "/category_listing"  %>
+        <% @path = request.path.split('/') %>
+        <% category = Category.find(@path[2]) %>
+        <div class="tablack">RUBRIEKEN</div>
+        <div class="tablackbig">
+          <ul>
+            <li class="tablack"><%= category.name %></li>
+          </ul>
+        </div>
+
+        <% elsif request.path.starts_with? "/category_filtering"  %>
+         <% @path = request.path.split('/') %>
+        <% category = Category.find(@path[2]) %>
+        <div class="tablack"><%= category.root.name %></div>
+        <div class="tablackbig">
+          <ul>
+            <li class="tablack"><%= category.name %></li>
+          </ul>
+           <div class="resultext">3532 resultaten</div>
+                
+                
+                <div class="dropopt"> 
+                    <div class="menu">
+                        <select class="menu">
+                            <option selected> Prijs </option>
+                            <option>Option</option>
+                            <option>Option</option>
+                        </select>
+                     </div>
+                     <div class="menu">
+                        <select class="menu">
+                            <option selected> Datum </option>
+                            <option>Option</option>
+                            <option>Option</option>
+                        </select>
+                     </div>
+                     <div class="last">
+                        
+                            Locatie                          
+                        
+                        
+                     </div>
+                     <div class="nextprearrow"> <img src="/assets/next-prv-arrow.png" alt="" title="" /></div>
+                </div>
+        </div>
+          
+      <% end %>
+      <% else %>
+      <div class="tablack">RUBRIEKEN</div>
+        <div class="tablackbig">
+          <ul>
+            <li class="tablack">NIEUWSTE ADVERTENTIES</li>
+          </ul>
+        </div>
+      <% end %>
+  
+      <% if params[:category_id] %>
+        <% category_name = Category.find(params[:category_id]) %>
+        <% parents = category_name.self_and_ancestors.select(:name) %>
+        <div class="tablack"><%= parents[2].name %></div>
+        <div class="tablackbig">
+          <ul>
+            <li class="tablack"><%= parents[1].name %>| <%= parents[0].name %></li>
+            <li> <%= Advertisement.where("category_id = #{params[:category_id]}").count %> resultaten </li>
+          </ul>
+        </div>
+      <% end %>    
+      <!-- <div class="tablack">Dieren en Toebehoren</div>
+      <div class="tablackbig">
+        <h1><%= image_tag "blue_arrow.png" %> <a href="#">Terug naar resultaten</a></h1>
+        <ul>
+          <li><a href="#" class="last active">Vogels</a></li>
+          <li><a href="#">Hokken en Kooien </a></li>
+        </ul>
+      </div> -->
+    </div>
+  </div>
+
+</div>
+  

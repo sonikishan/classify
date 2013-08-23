@@ -1,0 +1,104 @@
+<h1 id="advertise_management" class="hide_selectbox">Advertisement List</h1>
+<% if user_signed_in? %>
+<% if current_user.role == "user" %>
+   <div class="leftmenu">
+    <h1>Verfijn uw resultaten</h1>
+    <p>Prijs van/tot</p>
+    <input type="text" title="" value="van " class="field narrow"> <input type="text" title="" value="tot" class="field narrow">
+    <a href="#"><%= image_tag "go_arrow.png" %></a>
+    <h1>Groep en Rubriek</h1>
+    <p>Dieren en Toebehoren</p>
+    <p><a href="#">Vogels</a> | <a href="#">Hokken en Kooien</a></p>
+    <div id="catediv">
+      <h1>Conditie</h1>
+      <div id="skin_1" class="radiodiv" >
+        <input type="radio" name="music" value="1" id="music-1" /><span> Nieuw</span>
+        <input type="radio" name="music" value="1" id="music-2" />
+        <span> Zo goed als nieuw</span>
+        <input type="radio" name="music" value="1" id="music-3" /> <span> Gebruikt</span>
+      </div>
+      <h1>Type</h1>
+      <div id="skin_1" class="radiodiv" >
+        <input type="radio" name="music" value="1" id="music-1" />
+        <span> Broedkooi of Kweekkooi </span>
+        <input type="radio" name="music" value="1" id="music-2" /> <span> Vogelkooi</span>
+        <input type="radio" name="music" value="1" id="music-3" /> <span> Volière</span>
+        <input type="radio" name="music" value="1" id="music-3" /> <span> Overige typen</span>
+      </div>
+      <h1>Materiaal</h1>
+      <div id="skin_1" class="radiodiv" >
+        <input type="radio" name="music" value="1" id="music-1" /> <span> Aluminium  </span>
+        <input type="radio" name="music" value="1" id="music-2" /> <span> Hout</span>
+        <input type="radio" name="music" value="1" id="music-3" /> <span> Kunststof </span>
+        <input type="radio" name="music" value="1" id="music-3" /> <span> Metaal </span> 
+        <input type="radio" name="music" value="1" id="music-3" /> <span> Overige materialen</span>
+      </div>
+      <h1>Levering</h1>
+      <div id="skin_1" class="radiodiv" >
+        <input type="radio" name="music" value="1" id="music-1" /> <span> Ophalen  </span>
+        <input type="radio" name="music" value="1" id="music-2" /> <span> Verzenden </span>
+        <input type="radio" name="music" value="1" id="music-3" /> 
+        <span> Ophalen of Verzenden</span>
+      </div>
+      <h1>Aangeboden sinds</h1>
+      <div id="skin_1" class="radiodiv" >
+        <input type="radio" name="music" value="1" id="music-1" /> <span> Vandaag </span>
+        <input type="radio" name="music" value="1" id="music-2" /> <span> Een week </span>
+        <input type="radio" name="music" value="1" id="music-3" /> <span> Altijd</span>
+      </div>
+    </div>
+  </div>
+  <div id = "imagaddiv">
+    <% if params[:search] %>
+      <% @advertisement = Advertisement.where("title LIKE ?", "%#{params[:search]}%") %>
+      <% else %>
+        <% @advertisement = Advertisement.where("category_id" => params[:category_id]).order("id desc") %>
+    <% end %>
+    <% for advertise in @advertisement %>
+      <% advertise.advertisement_images.each do |img| %>
+      <div class="adbox">
+        <%= link_to image_tag(img.image, :size => "90x55"), advertise %>
+        <h1><%= truncate(advertise.title, :length => 12) %> <span>€  <%= advertise.min_price %> to <%= advertise.max_price %></span></h1>
+        <p><%= truncate(strip_tags(advertise.values_xml), :length => 12) %></p> 
+        <!--<p><%= raw(truncate(advertise.values_xml, :length => 12)) %></p> -->
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
+<div style="text-align: center;">
+  <h2>
+    <%= link_to "Advertisements List","#",:id=>"advertisements_list_header",:class => "active_Ad" %> | 
+    <%= link_to "Abuse Advertisement List","#",:id => "abuse_ads_list_header",:remote => true %>  
+  </h2>
+</div>
+<div id="advertisement_list" >
+  <h3><strong><%= link_to 'New Advertisement', new_advertisement_path %></strong></h3>
+  <%= render :partial => "advertisement_listing", :locals => {:advertisements =>  @advertisements } %>
+</div>
+<div id="abuse_list" style="display:none;">
+  <%= render :partial => "abuse_ads", :locals => {:advertisement_abuse =>  @advertisement_abuse } %>
+</div>
+<% end %>
+<% end %>
+
+<script type="text/javascript">
+$('#advertisements_list_header').click(function(){
+  $('#advertisements_list_header').addClass('active_Ad')
+  $('#abuse_ads_list_header').removeClass('active_Ad')
+  $('#advertisement_list').show();
+  $('#abuse_list').hide();
+  $.get('/advertisements',function(data){
+        },"script");
+});
+$('#abuse_ads_list_header').click(function(){
+  $('#advertisements_list_header').removeClass('active_Ad')
+  $('#abuse_ads_list_header').addClass('active_Ad')
+  $('#advertisement_list').hide();
+  $('#abuse_list').show();
+  $.get('/abuse_ads_listing_admin',function(data){
+        },"script");
+
+});
+
+</script>

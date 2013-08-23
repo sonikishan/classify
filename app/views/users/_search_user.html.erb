@@ -1,0 +1,21 @@
+<table id="admin_management">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Block User</th>
+    <th>Block Ip</th>
+    <th>Role</th>
+    <th></th>
+    <th></th>
+  </tr>
+ 
+  <% @users.each do |user| %>
+    <tr id="user_info_<%= user.id %>" class="sort_paginate_ajax_<%= user.id %>">
+      <%= render :partial => "user_information",:locals => {:user => user} %>
+    </tr>
+  <% end %>
+ 
+</table>
+<div class="digg_pagination">
+ <%= will_paginate @users , :inner_window => 1, :previous_label => 'Previous',:next_label => 'Next'%>
+</div>

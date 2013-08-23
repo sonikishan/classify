@@ -1,0 +1,45 @@
+
+
+                  <%= f.hidden_field  :characteristic_id , :value => @characteristic.id %>
+                  <% if @characteristic.input_kind == "selectbox" %>
+                        <% splited_options = @characteristic.default_values.split(" ").collect {|i| "<option>#{i}</option>"}.join %>
+                        <div class="selectareaorengsmall cat_select">
+                            <%= f.select :value, "#{splited_options}".html_safe ,{},{:id=>"Items5" ,:class=>"selectbox"}%>
+                        </div>
+                    <% elsif @characteristic.input_kind == "radiobutton" %>
+                          <% splited_options = @characteristic.default_values.split(",").collect {|i| i }.join%>
+                          <% splited_options.split(' ').each do |i| %>
+                            
+                            <div id="skin_1" class="radiodiv" >
+                              <%= label_tag "characteristic",i,:class=>"input2" %>
+                              <%= f.radio_button :value,i.html_safe %>
+                            </div>
+                          
+                          <% end %>
+                    <% elsif @characteristic.input_kind == "checkbox" %>
+                          <% splited_options = @characteristic.default_values.split("").collect {|i| i }.join %>
+                          
+                          
+                          <% splited_options.split(' ').each do |i| %>
+                            
+                            <div class="cat_checkbox">
+                                <%= label_tag "characteristic",i%>
+                                <%#= f.check_box :value,1,'dfg'%>
+                              
+                                <%= check_box_tag "advertisement[advertisement_characteristics_attributes][#{@i}][value]", i.html_safe, false  %>
+                            </div>
+                         <% end %>
+                    <% elsif @characteristic.input_kind == "textbox" %>
+                          <% splited_options = @characteristic.default_values %>
+                          <div class="cat_textbox">
+                              <%=f.text_field :value, {:value => splited_options,:class => "field" } %>
+                          </div>
+                    <% elsif @characteristic.input_kind == "textarea" %>
+                          <% splited_options = @characteristic.default_values %>
+                          
+                          <div class="cat_textarea">
+                              <%= f.text_area :value,:value => splited_options ,:cols => 35, :rows => 3 %>
+                          </div>
+                    <% end %>
+                 
+                

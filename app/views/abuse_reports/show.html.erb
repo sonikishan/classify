@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Message:</b>
+  <%= @abuse_report.message %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @abuse_report.user %>
+</p>
+
+<p>
+  <b>Advertisement:</b>
+  <%= @abuse_report.advertisement %>
+</p>
+
+
+<%= link_to 'Edit', edit_abuse_report_path(@abuse_report) %> |
+<%= link_to 'Back', abuse_reports_path %>

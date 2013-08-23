@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  price: 1
+  confirmation_token: MyString
+  confirmed_at: 2013-06-25 12:19:39
+  user: 
+  advertisement: 
+
+two:
+  price: 1
+  confirmation_token: MyString
+  confirmed_at: 2013-06-25 12:19:39
+  user: 
+  advertisement: 
