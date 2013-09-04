@@ -1,14 +1,14 @@
 class CharacteristicsController < ApplicationController
   # GET /characteristics
   # GET /characteristics.json
-  before_filter do 
-    redirect_to root_path unless current_user.admin?
-  end
+  before_filter :signed_in_user
+  
   def index
-    @characteristics = Characteristic.paginate(:page => params[:page], :per_page => 5)
+    @characteristics = Characteristic.search(params[:search]).paginate(:page => params[:page], :per_page => 5)
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @characteristics }
+      format.js
+      # format.json { render json: @characteristics }
     end
   end
 
@@ -96,6 +96,15 @@ class CharacteristicsController < ApplicationController
       @status = "check"
     elsif @status == "uncheck"
       @status = "uncheck"
+    end
+  end
+  protected
+
+  def signed_in_user
+    if user_signed_in?
+      redirect_to root_path unless current_user.admin?
+    else
+      redirect_to root_path
     end
   end
 end

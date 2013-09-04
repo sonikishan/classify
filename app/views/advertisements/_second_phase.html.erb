@@ -7,17 +7,32 @@
 $('#second_phase_selection').change(function(){
     $.get('/second_phase/'+$(this).val(),function(data){
         },"script");
+    $('#step0Next').show();
    $('#step0Next').click(function(){
 	if ($('#third_phase_selection').val() == null)
 	{
 		var status = "child"
-		$.get('/characteristics_list/'+$('#second_phase_selection').val()+'/'+status,function(data){
+		if ($('#advertisement_ids').val() == "")
+		{
+			var id = 0;
+			
+		}else{
+			var id = $('#advertisement_ids').val();
+		}
+		$.get('/characteristics_list/'+$('#second_phase_selection').val()+'/'+status+'/'+id,function(data){
         },"script");
 	}
 	else
 	{
 		var status = "sub_child"
-		$.get('/characteristics_list/'+$('#third_phase_selection').val()+'/'+status,function(data){
+			if ($('#advertisement_ids').val() == "")
+		{
+			var id = 0;
+
+		}else{
+			var id = $('#advertisement_ids').val();
+		}
+		$.get('/characteristics_list/'+$('#third_phase_selection').val()+'/'+status+'/'+id,function(data){
         },"script");
 	}
 

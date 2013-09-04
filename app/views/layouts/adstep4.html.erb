@@ -1,0 +1,89 @@
+<html>
+<head>
+  <title>WelocoDevise</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  
+  <%= csrf_meta_tags %>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".new_advertisement").formToWizard({ submitButton: 'CreateAd' })
+            $(".edit_advertisement").formToWizard({ submitButton: 'CreateAd' })
+        });
+    </script>
+</head>
+<body>
+  <% unless request.path == new_user_registration_path || request.path ==  contact_path || request.path == new_user_session_path || request.path == profile_path || request.path == new_advertisement_path || request.path == myads_path || request.path == myfavs_path  %>
+    <div class="shell">   
+    <% if user_signed_in? %>  
+    <div class="container" style="background: none;width:100%;">  
+  <div id="wrapper">
+  <div class="aanmakenpoup" style="width:100%;">  
+
+          
+         
+           
+
+            <% if  controller.action_name  == "edit" %>
+              <div class="aanmakendiv" style="width:82%;">
+            
+            
+      <% else %>
+       <div class="aanmakendiv" style="width:100%;">
+        <% end %>
+      <div class="bluetabdiv" >
+        <div class="tabdiv">
+          <section class="tabs">
+            <ul class="tab-nav">
+              <% if user_signed_in? %>                  
+                <li>
+                  <%= link_to "Uitloggen", destroy_user_session_path, :method => :delete %>
+                </li>
+                <% else %>  
+                <li class="active">
+                  <%= link_to "Inloggen", new_user_registration_path %>
+                </li>
+              <% end %>
+            </ul>
+          </section>
+        </div>
+      </div>
+      <div class="logmeldiv">
+        <h1 id="logo"><%= link_to image_tag("logo.png"), root_path %></h1>
+        <%= link_to image_tag("homeicon.png", class: 'homeicon'), root_path %> 
+      </div>
+
+      <div class="clearfix"></div>
+      <div class="bluediv" style="width: 101%;margin-left:-8px;"></div>
+      <div class="formmeldiv formmeldivnew">
+
+         <% if  controller.action_name  == "edit" %>
+         <% else %>
+            <ul id="steps">
+              <li id="stepDesc0" class="showad"><span>Kies uw rubriek</span>&nbsp;</li>
+              <li id="stepDesc0" class="showad"><span>Advertentie<br>
+                aanmaken</span></li>
+              <li id="stepDesc1" class="showad"><span>Bevestig contact<br>
+                gegevens</span></li>
+              <li id="stepDesc2" class="showad current"><span>Bekijk uw<br>
+                advertentie</span></li>
+            </ul>
+            <% end %>
+
+            
+        <%= yield %>
+     
+     </div>
+      </div> 
+    </div>        
+  </div> 
+   </div>
+<% end %>
+ 
+    </div>
+  <% end %>
+  <% if request.path == new_user_registration_path || request.path == contact_path || request.path == new_user_session_path || request.path == profile_path || request.path == new_advertisement_path || request.path == myads_path || request.path == myfavs_path  %>
+    <%= yield %>
+    <% end %>
+</body>
+</html>

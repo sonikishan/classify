@@ -19,7 +19,7 @@
     <% if user_signed_in? %>    
       <% if current_user.role == "admin" %>
         <%= render 'layouts/admin_header' %>       
-      <% elsif current_user.role == "super_user" %> 
+      <% elsif current_user.role == "Moderator" %> 
        <%= render 'layouts/superuser_header' %> 
       <% else %>
         <%= render 'layouts/header' %>              

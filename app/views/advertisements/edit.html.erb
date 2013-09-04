@@ -1,6 +1,95 @@
-<h1>Editing advertisement</h1>
+<script type="text/javascript">
+  function readURL(input,id1) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#img_prev_'+id1).attr('src', e.target.result).height(100).width(100);
 
-<%= render 'form' %>
+        
+      };
+      
+      reader.readAsDataURL(input.files[0]);
+    }
+    else {
+      var img = input.value;
+      $('#img_prev').attr('src',img).height(200);
+    }
+    // $("#x").show().css("margin-right","10px");
+  }
+</script>
+<div id="ad_create">
+                  <%= render :partial => "ad_create" %>
+        </div>
 
 <!-- <%= link_to 'Show', @advertisement %> |
 <%= link_to 'Back', advertisements_path %> -->
+<script type="text/javascript">
+$('#advertisement_category_id').change(function(){
+    $.get('/first_phase/'+$(this).val(),function(data){
+        },"script");
+    $('#step0Next').click(function(){
+    });
+    $('#third_phase_selection').empty();
+});
+$('#second_phase_selection').change(function(){
+      $.get('/second_phase/'+$(this).val(),function(data){
+          },"script");
+      $('#step0Next').click(function(){
+      });
+});
+
+</script>
+
+
+<script type="text/javascript">
+  bkLib.onDomLoaded(function() {
+    new nicEditor({buttonList : ['bold','italic','underline','ul']}).panelInstance('advertisement_values_xml');
+  });
+  // bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+  	$('#img_list_0').hide();
+    $('#Items').selectbox();
+    $('#Items2').selectbox();
+    $('#Items3').selectbox();
+    $('#Items4').selectbox();
+
+    $('#Items6').selectbox();
+    $('#Items7').selectbox();
+    $('#Items8').selectbox();
+    $('#Items9').selectbox();
+    $('#Items10').selectbox();
+    $('#step2Next').hide();
+    $('#step0Next').click(function(){
+
+      if ($('#third_phase_selection').val() == null)
+      {
+        var status = "child"
+        if ($('#advertisement_ids').val() == "")
+        {
+          var id = 0;
+          
+        }else{
+          var id = $('#advertisement_ids').val();
+        }
+        $.get('/characteristics_list/'+$('#second_phase_selection').val()+'/'+status+'/'+id,function(data){
+            },"script");
+      }
+      else
+      {
+        var status = "sub_child"
+          if ($('#advertisement_ids').val() == "")
+        {
+          var id = 0;
+
+        }else{
+          var id = $('#advertisement_ids').val();
+        }
+        $.get('/characteristics_list/'+$('#third_phase_selection').val()+'/'+status+'/'+id,function(data){
+            },"script");
+      }
+  });
+});
+</script>

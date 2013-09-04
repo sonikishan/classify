@@ -1,13 +1,14 @@
 	<td>
 		<% if !advertisement.advertisement_images.blank? %>
 		<%= image_tag(advertisement.advertisement_images.first.image.url,:size => "50x50") %>
+    <% else %>
+    <%= image_tag('NoImageAvailable.jpg',:size => "50x50") %>
 		<% end %>
 	</td>
       <td><%= link_to "#{advertisement.title}",advertisement_path(advertisement) %></td>
       <td><%= advertisement.category.blank? ? '-' : advertisement.category.name %></td>
-      <td><%= advertisement.min_price.blank? ? '0.0' : advertisement.min_price %> to <%= advertisement.max_price.blank? ? '0.0' : advertisement.max_price %></td>
-      <td><%= advertisement.paid.eql?(true) ? "Yes" : "No" %></td>
-      <td><%= advertisement.deleted.eql?(true) ? "Yes" : "No" %></td>
+      <td><%= advertisement.price.blank? ? '0.0' : advertisement.price  %></td>
+      <td><%= advertisement.advertisement_status.blank? ? "-" : advertisement.advertisement_status.status  %></td>
       <td><%= link_to 'Edit', edit_advertisement_path(advertisement) %></td>
       <td><%= link_to 'Destroy', advertisement_path(advertisement),
                     method: :delete, data: { confirm: 'Are you sure?' } %></td>

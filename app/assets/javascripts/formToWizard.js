@@ -55,7 +55,7 @@
 
         function createNextButton(i) {
             var stepName = "step" + i;
-            $("#" + stepName + "commands").append("<a href='#' id='" + stepName + "Next' class='next'>Next </a>");
+            $("#" + stepName + "commands").append("<a href='#' id='" + stepName + "Next' class='next'>Verder</a>");
 
             $("#" + stepName + "Next").bind("click", function(e) {
                 $("#" + stepName).hide();

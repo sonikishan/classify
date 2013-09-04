@@ -1,0 +1,5 @@
+$('#show_result').html("<%= escape_javascript(render :partial => 'show_result',:locals => {:advertisement => @advertisement}) %>");
+$(".dropopt a").click(function() {
+    $.getScript(this.href);
+    return false;
+  });

@@ -2,13 +2,13 @@
 
 
 .form_contact { width:500px; height:auto; float:right; }
-div.selectbox-wrapper { background-color: white; border: 1px solid #CCCCCC; margin: 0; max-height: 196px; overflow: auto; position: relative; text-align: left; top: 0px; z-index: 9999; width:210px; behavior: url(pie.htc); font-size:12px; }
+div.selectbox-wrapper { background-color: white; border: 1px solid #CCCCCC; margin: 0; max-height: 196px; overflow: auto; position: relative; text-align: left; top: 0px;  width:210px; behavior: url(pie.htc); font-size:12px; }
 div.selectbox-wrapper ul { list-style-type:none; margin:0px; padding:0px; }
 div.selectbox-wrapper ul li.selected { background-color: #eff2f3; }
 div.se-wrapper ul li.current { background-color: #eff2f3; }
 div.selectbox-wrapper ul li { list-style-type:none; display:block; margin:0; padding:2px; cursor:pointer; }
 .selectarea { float: left; font: 14px Verdana, Geneva, sans-serif; height: 26px; margin:5px 5px 0 5px; width: 140px; }
-.selectbox { font-size:11px; font-family: Helvetica, Arial, sans-serif; color:#888888; width:auto; height:19px; background:#ffffff url(../images/select_arrowjs.png) no-repeat right; cursor: pointer; border:none; margin:5px 0 0 0; padding:2px 0 0 10px; float:left; font:normal 12px Verdana, Geneva, sans-serif; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; behavior: url(PIE.htc); box-shadow: none;  }
+.selectbox { font-size:11px; font-family: Helvetica, Arial, sans-serif; color:#888888; width:auto; height:19px; background:#ffffff url(/assets/select_arrowjs.png) no-repeat right; cursor: pointer; border:none; margin:5px 0 0 0; padding:2px 0 0 10px; float:left; font:normal 12px Verdana, Geneva, sans-serif; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; behavior: url(PIE.htc); box-shadow: none;  }
 /*.selectbox:focus { background: url("../images/select_arrowjs.png") no-repeat scroll right center #fff; box-shadow: none; }*/
 
 
@@ -21,28 +21,22 @@ div.selectbox-wrapper ul li { list-style-type:none; display:block; margin:0; pad
     
 }*/
 
-div.selectbox-wrapper { background-color: white; border: 1px solid #CCCCCC; margin: 0; max-height: 196px; overflow: auto; position: relative; text-align: left; top: 0px; z-index: 9999; width:210px; behavior: url(pie.htc); font-size:12px; }
-div.selectbox-wrapper ul { list-style-type:none; margin:0px; padding:0px; }
-div.selectbox-wrapper ul li.selected { background-color: #eff2f3; }
-div.se-wrapper ul li.current { background-color: #eff2f3; }
-div.selectbox-wrapper ul li { list-style-type:none; display:block; margin:0; padding:2px; cursor:pointer; }
-.selectareablue { float: left; font: 12px Helvetica, Arial, sans-serif; height: 32px; margin:10px 5px 0 5px; width: 161px; background:url(../images/selcbgblue.jpg) repeat-x right top; position:relative; z-index:99999;  -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; behavior: url(PIE.htc); }
-.selectareablue input { float: left; color:#000; font: 12px Helvetica, Arial, sans-serif; height: 29px; margin:0px 5px 0 0px; width: 150px; background:  url(../images/select_arrowjs.png) no-repeat right 13px; line-height:30px; border:1px solid #bddceb;}
-.selectbox { font-size:11px; font-family: Helvetica, Arial, sans-serif; color:#888888; width:auto; height:19px; background:#ffffff url(../images/select_arrowjs.png) no-repeat right; cursor: pointer; border:none; margin:5px 0 0 0; padding:2px 0 0 10px; float:left; font:normal 12px Verdana, Geneva, sans-serif; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; behavior: url(PIE.htc); box-shadow: none;  }
+
+.selectareablue { float: left; font: 12px Helvetica, Arial, sans-serif; height: 32px; margin:10px 5px 0 5px; width: 161px; background:url(/assets/selcbgblue.jpg) repeat-x right top; position:relative; z-index:99999;  -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; behavior: url(PIE.htc); }
+.selectareablue input { float: left; color:#000; font: 12px Helvetica, Arial, sans-serif; height: 29px; margin:0px 5px 0 0px; width: 150px; background:  url(/assets/select_arrowjs.png) no-repeat right 13px; line-height:30px; border:1px solid #bddceb;}
+
+.selectareabluesmall { float: left; font: 14px Verdana, Geneva, sans-serif; height: 32px; margin:10px 5px 0 5px; width: 110px; background:url(/assets/selcbgblue.jpg) repeat-x right top; position:relative;  -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; behavior: url(PIE.htc); }
+.selectareabluesmall input { float: left; color:#000; font: 12px Helvetica, Arial, sans-serif; height: 29px; margin:0px 5px 0 0px; width: 100px; background:  url(/assets/select_arrowjs.png) no-repeat right 13px; line-height:30px; border:1px solid #bddceb;}
+
 /*.selectbox:focus { background: url("../images/select_arrowjs.png") no-repeat scroll right center #fff; box-shadow: none; }*/
 
-.selectareabluesmall { float: left; font: 14px Verdana, Geneva, sans-serif; height: 32px; margin:10px 5px 0 5px; width: 110px; background:url(../images/selcbgblue.jpg) repeat-x right top; position:relative; z-index:99999;  -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; behavior: url(PIE.htc); }
-.selectareabluesmall input { float: left; color:#000; font: 12px Helvetica, Arial, sans-serif; height: 29px; margin:0px 5px 0 0px; width: 100px; background:  url(../images/select_arrowjs.png) no-repeat right 13px; line-height:30px; border:1px solid #bddceb;}
-.selectbox { font-size:11px; font-family: Helvetica, Arial, sans-serif; color:#888888; width:auto; height:19px; background:#ffffff url(../images/select_arrowjs.png) no-repeat right; cursor: pointer; border:none; margin:5px 0 0 0; padding:2px 0 0 10px; float:left; font:normal 12px Verdana, Geneva, sans-serif; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; behavior: url(PIE.htc); box-shadow: none;  }
-/*.selectbox:focus { background: url("../images/select_arrowjs.png") no-repeat scroll right center #fff; box-shadow: none; }*/
+.selectareawhite { float: left; font: 12px Helvetica, Arial, sans-serif; height: 31px; margin:10px 5px 0 5px; width: 191px; background:#fff; position:relative; -moz-border-radius: 0px; -webkit-border-radius: 0px; border-radius: 0px; behavior: url(PIE.htc); }
+.selectareawhite input { float: left; color:#000; font: 12px Helvetica, Arial, sans-serif; height: 29px; margin:0px 5px 0 0px; width: 180px; background:  url(/assets/select_arrowjs.png) no-repeat right 13px; line-height:30px; border:1px solid #a6bac4; -moz-border-radius: 0px; -webkit-border-radius: 0px; border-radius: 0px; behavior: url(PIE.htc); }
 
-.selectareawhite { float: left; font: 12px Helvetica, Arial, sans-serif; height: 31px; margin:10px 5px 0 5px; width: 191px; background:#fff; position:relative; z-index:99999;  -moz-border-radius: 0px; -webkit-border-radius: 0px; border-radius: 0px; behavior: url(PIE.htc); }
-.selectareawhite input { float: left; color:#000; font: 12px Helvetica, Arial, sans-serif; height: 29px; margin:0px 5px 0 0px; width: 180px; background:  url(../images/select_arrowjs.png) no-repeat right 13px; line-height:30px; border:1px solid #a6bac4; -moz-border-radius: 0px; -webkit-border-radius: 0px; border-radius: 0px; behavior: url(PIE.htc); }
-.selectbox { font-size:11px; font-family: Helvetica, Arial, sans-serif; color:#888888; width:auto; height:19px; background:#ffffff url(../images/select_arrowjs.png) no-repeat right; cursor: pointer; border:none; margin:5px 0 0 0; padding:2px 0 0 10px; float:left; font:normal 12px Verdana, Geneva, sans-serif; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; behavior: url(PIE.htc); box-shadow: none;  }
 /*.selectbox:focus { background: url("../images/select_arrowjs.png") no-repeat scroll right center #fff; box-shadow: none; }*/
 
 .selectareaoreng { float:left; clear:left; font: 12px Helvetica, Arial, sans-serif; height: 31px; /*margin:10px 5px 0 0; */ margin:0px 5px 0 0;  padding:0 10px 0 0; width: 260px; background:#f4f5f6; position:relative; z-index:99999;  -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; behavior: url(PIE.htc); border:1px solid #C8C7C7; }
-.selectareaoreng input { float:left; color:#000; font: 12px Helvetica, Arial, sans-serif; height: 29px; padding:0 5px 0 5px; margin:0px 5px 0 0px; width: 252px; background:  image-url("yellow_button.png") no-repeat right 7px; line-height:30px; border:none; }
+.selectareaoreng input { float:left; color:#000; font: 12px Helvetica, Arial, sans-serif; height: 29px; padding:0 5px 0 5px; margin:0px 5px 0 0px; width: 252px; background:  url(/assets/yellow_button.png) no-repeat right 7px; line-height:30px; border:none; }
 
 .selectareaorengsmall { float:left; clear:left; font: 12px Helvetica, Arial, sans-serif; height:27px; margin:0 5px 0 0; padding:0 10px 0 0; width: 209px; background:#f4f5f6; position:relative; /*z-index:99999;*/  -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; behavior: url(PIE.htc); border:1px solid #C8C7C7; }
-.selectareaorengsmall input { float:left; color:#000; font: 12px Helvetica, Arial, sans-serif; height: 27px; padding:0 5px 0 5px; margin:0px 5px 0 0px; width: 200px; background:  url(../images/yellow_button.png) no-repeat right 7px; line-height:30px; border:none;  -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; behavior: url(PIE.htc); }
+.selectareaorengsmall input { float:left; color:#000; font: 12px Helvetica, Arial, sans-serif; height: 27px; padding:0 5px 0 5px; margin:0px 5px 0 0px; width: 200px; background:  url(/assets/yellow_button.png) no-repeat right 7px; line-height:30px; border:none;  -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; behavior: url(PIE.htc); }

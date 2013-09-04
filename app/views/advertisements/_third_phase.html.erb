@@ -1,5 +1,5 @@
-<% if !@child_category.nil? %>
-<%= select "advertisement", "category_id", @child_category.map {|x| [x.name, x.id]}, {}, :multiple => false, :size => 15,:id => "third_phase_selection" %>
+<% if !@sub_child_category.nil? %>
+<%= select "advertisement", "category_id", @sub_child_category.map {|x| [x.name, x.id]}, {}, :multiple => false, :size => 15,:id => "third_phase_selection" %>
 <% else %>
 <%= select "advertisement", "category_id",[''] %>
 <% end %>

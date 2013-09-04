@@ -1,0 +1,2 @@
+$("#search_ad").html("<%= escape_javascript(render :partial => "search_ad", :locals => {:advertisement_abuse =>  @advertisement_abuse }) %>")
+$('#abuse_ads .pagination a').attr('data-remote', 'true');

@@ -12,7 +12,18 @@ WelocoDevise::Application.routes.draw do
 
   resources :view_counts
 
-
+resources :advertisements do
+    member do
+      post 'bid'
+    end
+    member do
+      post 'abuse_report'
+    end
+    member do
+      post 'contact_advertiser'
+    end
+    put :favorite, on: :member
+  end
   resources :favorites
 
 
@@ -70,16 +81,19 @@ WelocoDevise::Application.routes.draw do
   match 'sub_category_child_status/:id' => 'categories#sub_category_child_status',:as => :sub_category_child_status
   match 'destroy_category_ads/:id' => "categories#destroy_category_ads",:as => :destroy_category_ads
   match 'category_listing/:id'  => "categories#category_listing" , :as => :category_listing
-  match 'category_filtering/:id'  => "categories#category_filtering" , :as => :category_filtering
+  match 'category_filtering/:id/:parent_id'  => "categories#category_filtering" , :as => :category_filtering
+  match 'price_search(/:value)' => "categories#price_search", :as => :price_search
   match 'auth/:provider/callback' => 'authentication#create'
   match '/advertisements/:id' => 'advertisements#show', :as => :advertisement_show
+  match '/step4_ad/:data' => 'advertisements#step4_ad', :as => :step4_ad
   match 'abuse_ad_status/:id' => 'advertisements#abuse_ad_status',:as => :abuse_ad_status
   match 'first_phase/:id' => "advertisements#first_phase"
    match 'second_phase/:id' => "advertisements#second_phase"
    match 'large_img/:id' => 'advertisements#large_img',:as => :large_img
    match 'select_large_image/:id' => 'advertisements#select_large_image', :as => :select_large_image
-   match 'characteristics_list/:id/:status' => 'advertisements#characteristics_list',:as => :characteristics_list
+   match 'characteristics_list/:id/:status(/:ad_id)' => 'advertisements#characteristics_list',:as => :characteristics_list
    match '/abuse_ads_listing_admin' => 'advertisements#abuse_ads_listing_admin',:as => :abuse_ads_listing_admin
+   match '/search_abuse_ad' => 'advertisements#search_abuse_ad',:as => :search_abuse_ad
    match '/select_input_kind/:status' => 'characteristics#select_input_kind',:as => :select_input_kind
   # get 'advertisements/getchars' => 'advertisements#getchars', :as => :get_chars
 

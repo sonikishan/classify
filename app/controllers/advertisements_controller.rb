@@ -1,7 +1,7 @@
 class AdvertisementsController < ApplicationController
-  
-  before_filter :authenticate_user!, only: [:new, :edit, :create, :update, :destroy, :abuse_report]
-  before_filter :authenticate_user!, only: [:new, :edit, :create, :update, :destroy, :abuse_report] do 
+    helper_method :sort_column, :sort_direction
+ 
+  before_filter :authenticate_user!, only: [:index] do 
     redirect_to root_path unless current_user.super_user? || current_user.admin? 
   end
 
@@ -9,25 +9,35 @@ class AdvertisementsController < ApplicationController
   # GET /advertisements.json
   def index
       @advertisement = Advertisement.all
-      @advertisements = Advertisement.paginate(:page => params[:page], :per_page => 5)
-      @advertisement_abuse =AbuseReport.paginate(:page => params[:page], :per_page => 3).where("advertisement_id in (?)",@advertisement)
+      if request.xhr?
+        @advertisements = Advertisement.search(params[:search]).paginate(:page => params[:page],:per_page => 5)
+      else
+        @advertisements = Advertisement.paginate(:page => params[:page],:per_page => 5)
+      end
+       @advertisement_abuse =AbuseReport.paginate(:page => params[:page], :per_page => 5).where("advertisement_id in (?)",@advertisement)
+
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @advertisements }
+      format.js
+      # format.json { render json: @advertisements }
     end
   end
   def abuse_ads_listing_admin
     @advertisements = Advertisement.all
-    @advertisement_abuse =AbuseReport.paginate(:page => params[:page], :per_page => 2).where("advertisement_id in (?)",@advertisements)
-
+    @advertisement_abuse =AbuseReport.paginate(:page => params[:page], :per_page => 5).where("advertisement_id in (?)",@advertisements)
     respond_to do |format|
       format.js
     end
   end
 
+  def search_abuse_ad
+    @advertisement_abuse =AbuseReport.paginate(:page => params[:page], :per_page => 5).joins(:advertisement).where("advertisements.title like ?","%#{params[:searchad]}%")
+  end
+
   # GET /advertisements/1
   # GET /advertisements/1.json
   def show
+    @characteristics_status = "0"
     @advertisement = Advertisement.find(params[:id])
     @contact = Contact.new
     if @advertisement.view_count.nil?
@@ -53,8 +63,6 @@ class AdvertisementsController < ApplicationController
     @advertisement = Advertisement.new
     @characteristics_status = "0"
     @category = Category.roots.where(:active_status => true)
-
-    #@child_category= Category.roots
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @advertisement }
@@ -63,40 +71,66 @@ class AdvertisementsController < ApplicationController
 
   # GET /advertisements/1/edit
   def edit
-    @advertisement = Advertisement.find(params[:id])
-    @characteristics_status = "0"
-    @category = Category.roots.where(:active_status => true)
+      @advertisement = Advertisement.find(params[:id])
+      @ad_image = AdvertisementImage.where("advertisement_id = ?",@advertisement.id)
+      @characteristics_status = "0"
+      @category = Category.roots.where(:active_status => true)
+      @sub_category = Category.find(@advertisement.category_id)
+      @rootcategory = @sub_category.root
+      @child_category_ids = @rootcategory.child_ids
+      @child_category = Category.where("id in (?) AND active_status = ?",@child_category_ids,true)
+      @child_category.each do |category|
+        @child_category_ids1 = category.child_ids
+        @sub_child_category = Category.where("id in (?) AND active_status = ?",@child_category_ids1,true)
+      end
+    render :layout => 'layouts/adstep4'
     #authorize! :edit, @advertisement
   end
 
   # POST /advertisements
   # POST /advertisements.json
   def create
-    
+    @flag = true
+    @contact = Contact.new
     @advertisement = Advertisement.new(params[:advertisement])
+
     if user_signed_in?
       @advertisement.user_id = current_user.id
       @advertisement.advertisement_status_id = 1
     end  
     @category = Category.roots.where(:active_status => true)
-
     respond_to do |format|
       if @advertisement.save
-        format.html { redirect_to @advertisement, notice: 'Advertisement was successfully created.' }
-        format.json { render json: @advertisement, status: :created, location: @advertisement }
+        format.html { render action: "show", :layout => 'layouts/adstep4', notice: 'Advertisement was successfully created.' }
       else
         format.html { render action: "new" }
         format.json { render json: @advertisement.errors, status: :unprocessable_entity }
       end
     end
   end
+  def step4_ad
+  end
 
   # PUT /advertisements/1
   # PUT /advertisements/1.json
   def update
+    @flag = true
     @advertisement = Advertisement.find(params[:id])
-
-    respond_to do |format|
+     @contact = Contact.new
+     @category = Category.roots.where(:active_status => true)
+      @sub_category = Category.find(@advertisement.category_id)
+      @rootcategory = @sub_category.root
+      @child_category_ids = @rootcategory.child_ids
+      @child_category = Category.where("id in (?) AND active_status = ?",@child_category_ids,true)
+      @child_category.each do |category|
+        @child_category_ids1 = category.child_ids
+        @sub_child_category = Category.where("id in (?) AND active_status = ?",@child_category_ids1,true)
+      end
+     respond_to do |format|
+      @advertisement_char = AdvertisementCharacteristic.where("advertisement_id in (?)",@advertisement)
+      @advertisement_char.each do |char|
+        char.destroy
+      end
       if @advertisement.update_attributes(params[:advertisement])
         format.html { redirect_to @advertisement, notice: 'Advertisement was successfully updated.' }
         format.json { head :no_content }
@@ -129,12 +163,25 @@ class AdvertisementsController < ApplicationController
     @category = Category.find(params[:id])
 
     @child_category_ids = @category.child_ids
-     @child_category = Category.where("id in (?) AND active_status = ?",@child_category_ids,true)
+     @sub_child_category = Category.where("id in (?) AND active_status = ?",@child_category_ids,true)
   end
 
   def characteristics_list
-  @advertisement = Advertisement.new
     @category = Category.find(params[:id])
+    if params[:ad_id] == "0"
+     @advertisement = Advertisement.new
+     @advertisement_characterstic = @advertisement.advertisement_characteristics.build
+
+    else
+       @advertisement = Advertisement.find(params[:ad_id])
+       if @advertisement.category_id == @category.id 
+        @advertisement_characterstic= AdvertisementCharacteristic.find_by_advertisement_id(@advertisement)
+       else
+        @advertisement_characterstic = @advertisement.advertisement_characteristics.build
+      end
+    end
+    
+
     if params[:status] == "child"
       @child_category_ids = @category.child_ids
       @child_category = Category.where("id in (?)",@child_category_ids)
@@ -200,6 +247,7 @@ class AdvertisementsController < ApplicationController
     @advertisement = Advertisement.find(params[:id])
     if AbuseReport.exists?(:advertisement_id => params[:id], :user_id => current_user.id)
       redirect_to @advertisement, notice: "You already have abused this advertisement"
+      
       else
         current_user.abuse_reports << AbuseReport.new(advertisement_id: @advertisement.id, message: params[:message], pulldown: params[:pulldown])
         AbuseReportMailer.abuse_report_email(current_user, @advertisement).deliver 
@@ -249,13 +297,15 @@ class AdvertisementsController < ApplicationController
     else
       redirect_to :back, :notice => "PLease send message again!"
     end
-    #@advertisement = Advertisement.find(params[:id])
-    #@user = User.find(@advertisement.user_id)
-     #message = params[:client_message]
-     #email = params[:client_email]
-     #phone = params[:client_phone]
-    #redirect_to :back, notice: "Message: #{message}, email: #{email}, phone: #{phone}"
-    # redirect_to :back, notice: "This is contact advertiser method"
+  end
+  private
+
+  def sort_column
+     Advertisement.column_names.include?(params[:sort]) ? params[:sort] :  "price"
+  end
+
+  def sort_direction
+   %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
   end
 end
 

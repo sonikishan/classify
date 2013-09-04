@@ -1,11 +1,12 @@
+
 <td> <%= advertisements.advertisement.title%> </td>
-      <td><%=  advertisements.message%></td>
-      <td> <%=  advertisements.pulldown %>
-        <td><%= advertisements.user.blank? ? '-' : advertisements.user.name %></td>
-        <td>
-          <% if  advertisements.advertisement.approved == true %>
-           <%= link_to "NO",abuse_ad_status_path(advertisements.advertisement_id),:remote => true %>
-          <% else %>
-           <%= link_to "Yes",abuse_ad_status_path(advertisements.advertisement_id),:remote => true  %>
-          <% end %>
-        </td>
+<td><%=  advertisements.message%></td>
+<td> <%=  advertisements.pulldown %>
+<td><%= advertisements.user.blank? ? '-' : advertisements.user.name %></td>
+<td>
+  <% if  advertisements.advertisement.approved == true %>
+    <%= link_to "NO",abuse_ad_status_path(advertisements.advertisement_id),:remote => true %>
+  <% else %>
+    <%= link_to "Yes",abuse_ad_status_path(advertisements.advertisement_id),:remote => true  %>
+  <% end %>
+</td>

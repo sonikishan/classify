@@ -10,20 +10,21 @@ ActionMailer::Base.perform_deliveries = true
 ActionMailer::Base.raise_delivery_errors = true
 ActionMailer::Base.default :content_type => "text/html"
 
-#ActionMailer::Base.smtp_settings = {
- #   :address              => "smtp.gmail.com",
-  #  :port                 => 587,
-   # :user_name 				=> "dharin.test@gmail.com",
-   # :password 				=> "rubyonrails",
-   # :authentication       => "plain",
-   # :enable_starttls_auto => true
-  #}
-  ActionMailer::Base.smtp_settings = {
-  :address => "smtp.gmail.com",
-  :port => 25,
-  :domain => "heraldsolutions.in",
-  :authentication => :plain,
-  :user_name => "heraldsolutions.ahd@gmail.com",
-  :password => "herald123",
-  :enable_starttls_auto => true
-}
+ActionMailer::Base.smtp_settings = {
+   :address              => "smtp.gmail.com",
+   :port                 => 587,
+   :domain => "gmail.com",
+   :user_name 				=> "dharin.test@gmail.com",
+   :password 				=> "rubyonrails",
+   :authentication       => "login",
+   :enable_starttls_auto => true
+  }
+#   ActionMailer::Base.smtp_settings = {
+#   :address => "smtp.gmail.com",
+#   :port => 25,
+#   :domain => "heraldsolutions.in",
+#   :authentication => :plain,
+#   :user_name => "heraldsolutions.ahd@gmail.com",
+#   :password => "herald123",
+#   :enable_starttls_auto => true
+# }

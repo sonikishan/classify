@@ -21,10 +21,13 @@ class User < ActiveRecord::Base
   end
   
   def super_user?
-     self.role == "super_user"
+     self.role == "Moderator"
+  end
+  def user?
+     self.role == "user"
   end
   def admin?
-    self.role == "admin" || self.role == "user"
+    self.role == "admin" 
   end
   def self.search(search)
     if search

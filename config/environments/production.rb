@@ -43,8 +43,13 @@ WelocoDevise::Application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
+
+  # config.action_controller.asset_host = "http://122.170.114.91:3000/"
   config.action_controller.asset_host = "http://weloco.herokuapp.com/"
 
+  #config.action_controller.asset_host = "http://weloco.herokuapp.com/"
+
+  # config.action_mailer.default_url_options = { :host => 'http://122.170.114.91:3000/' }
   config.action_mailer.default_url_options = { :host => 'weloco.herokuapp.com' }
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
@@ -62,7 +67,7 @@ WelocoDevise::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-
+  SKIP_RAILS_ADMIN_INITIALIZER=false
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5

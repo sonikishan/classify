@@ -12,25 +12,31 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div >
     <%= f.label :category_id %><br />
     <%= f.collection_select :category_id, Category.leaves, :id, :name, :prompt => "Select" %>
   </div>
-  <div class="field">
+  <div >
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
-  <div class="field" >
-     <%= label_tag "Select input kind value" %>
+  <div  >
+     <%#= label_tag "Do you want to set multiple default values?" %>
   
-      <%= check_box_tag "multipleselection",1 %>
+      <%#= check_box_tag "multipleselection",1 %>
   </div>
-    <div class="field" id = "all_options">
-      <%= render :partial => "selectvalue" ,:locals => {:status => @status,:flag => @flag} %>
+    <div  id = "all_options">
+      <%#= render :partial => "selectvalue" ,:locals => {:status => @status,:flag => @flag} %>
+      <%= label "characteristic","Select input kind value" %><br />
+      <%= f.select :input_kind,[['selectbox'],['radiobutton'],['checkbox'],['textbox'],['textarea']]%>
     </div>
-  <div class="field">
-    <%= f.label :default_values %><br />
-    <%= f.text_area :default_values %>
+  <div>
+     <%= f.label :default_value %><br />
+     <%= f.fields_for :default_values do |pc| %>
+                            
+    <%= render :partial => "default_values", :locals => {:f => pc} %>
+  <% end %>
+   <%= link_to_add_fields_value "Add Default Value", f, :default_values %>
   </div>
   <div class="actions">
     <%= f.submit %>
@@ -38,6 +44,7 @@
 <% end %>
 
 <script type="text/javascript">
+
 $('#multipleselection').change(function(){
   if ($('#multipleselection').is(':checked')) 
   {

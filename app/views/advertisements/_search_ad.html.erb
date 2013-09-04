@@ -1,0 +1,14 @@
+<table id="admin_management">
+  <tr>
+    <th>Title</th>
+    <th>Message</th>
+    <th>Pulldown</th>
+    <th>User Name</th>
+    <th>Approved</th>
+  </tr>
+ <% @advertisement_abuse.each do |advertisements| %>
+      <tr id="abuse_ad_list">
+        <%= render :partial => "abuse_ad_list",:locals => {:advertisements => advertisements} %>
+      </tr>
+ <% end %>
+</table>

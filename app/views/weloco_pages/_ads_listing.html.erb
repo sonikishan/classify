@@ -1,14 +1,14 @@
 
                 <% @myads.each do |myad| %>
                 <% @abuse_ad = AbuseReport.where("advertisement_id = ?",myad) %>
-                    <div class="listdiv topbod botbod">
+                    <div class="listdiv topbod botbod" id="listing <%= myad.id %>">
                         <div class="listing">
-                		<%= link_to image_tag(myad.advertisement_images.first.blank? ? 'No Image' : myad.advertisement_images.first.image.url, :size => "98x73"), myad %>
+                		<%= link_to image_tag(myad.advertisement_images.first.blank? ? 'NoImageAvailable.jpg' : myad.advertisement_images.first.image.url, :size => "98x73"), myad %>
                 		<div class="titlebig">
                 			<%= truncate(myad.title, :length => 25) %>
                 		</div>
                 		<div class="pricebig">
-                			€ <%= myad.min_price %> to <%= myad.min_price %>
+                			€ <%= myad.price %> 
                 			<ul>
                 				<li>
                 					<a href="#">Reserveren</a>
@@ -20,22 +20,131 @@
                         </div>
                         <div class="pricebig">
                             <ul>
-                                <li><%= myad.view_count.amount %></li>
+                                <li><%= myad.view_count.blank? ? '-' : myad.view_count.amount %></li>
                                 <li>Gezien</li>
                             </ul>
                         </div>
                         <div class="pricebig">
                         	<ul>
                         		<li>
-                        			<a href="#" class="active">Neem contact op</a>
+                                    <%= link_to "Neem contact op", "#email-link", rel: "facebox",:class=>"active" %>
+                        			
                         		</li>
                           	    <li>
-                          	    	<%= link_to 'Verwijder', myad, method: :delete, class: 'active', data: { confirm: 'Are you sure?' } %>
+                          	    	<%#= link_to 'Verwijder', myad, method: :delete, class: 'active', data: { confirm: 'Are you sure?' ,:remote => true} %>
+
+
+                                    <%= link_to 'Verwijder', advertisement_path(myad), :class => 'active remote-delete',:id => "row #{myad.id}" %>
                           	    </li>
                             </ul>
                         </div>
                     </div>
                
             </div>
+            <div id="email-link" style="display:none;">
+  <div class="poup">
+    <div class="mijnadediv">
+      <div class="bluetabdiv" >
+        <div class="tabdiv">
+          <section class="tabs">
+            <ul class="tab-nav">      
+              <li class="active">
+                <% if user_signed_in? %>
+                  <%= link_to "Uitloggen", destroy_user_session_path, :method => :delete %>
+                <% else %>  
+                  <%= link_to "Inloggen", new_user_registration_path, id: "email_login_popup" %>
+                <% end %>
+              </li>
+            </ul>
+          </section>  
+        </div>
+      </div>
+      <div class="logmeldiv">
+        <h1 id="logo">
+          <%= link_to image_tag('logo.png'), root_path %>
+        </h1>        
+        <div class="toplinkcont" style="padding-top:40px;">
+          <%= image_tag 'blue_arrow.png' %><%= link_to 'Terug naar resultaten', root_path %>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="bluediv" style="margin-left: -8px !important;width: 102% !important;"></div>   
+      <div class="formmeldiv">
+        <div class="contactopnemenen">
+          <%= form_for @contact,:url => contact_advertiser_advertisement_path(myad), :id => 'contact_advertiser', :method => "post" do |f| %>
+            <div class="contactopnemenenleft">
+              <h1>Contact opnemen met EUROKOOI</h1>
+              <%= f.text_area :message,:class => 'textarea12', :placeholder => "Enter your comments here", :required => true %>
+              <!-- <textarea class="textarea12" rows="" cols="" name="tbcChangesReq" placeholder="Enter your comments here"></textarea> -->
+              <div class="submdiv">
+                <%= submit_tag "Versturen", :class => "btorg" %>
+                <!-- <input type="submit" class="btorg" id=""  value="Inloggen" name="Wijzig"> -->
+                <input type="button" class="submdiv" id="clear-fields"  value="Annuleren" name="Wijzig" style="width: auto;">
+              </div>
+            </div>
+            <div class="contactopnemenenright">
+              <h1>Uw contactgegevens</h1>        
+              <div class="cotopdiv">
+                E-mailadres
+                <% if user_signed_in? %>
+                  <% email = current_user.email %>
+                  <%= f.email_field :email, :value => email, :class => 'formdiv', :required => true %>
+                <% else %>  
+                  <%= f.email_field :email, :class => 'formdiv', :placeholder => 'you@example.com', :required => true %>
+                <% end %>
+                <!-- <input type="text" placeholder="ew@UberDTPer.nl" tabindex="0" readonly="readonly" autocomplete="off" class="formdiv" id="Items_input"> -->
+              </div>
+              <div class="cotopdiv">
+                Telefoonnummer
+                <% if user_signed_in? %>
+                  <%= f.phone_field :phone, :value => current_user.phone, :class => 'formdiv', :required => true %>
+                <% else %>  
+                  <%= f.phone_field :phone,  :class => 'formdiv', :placeholder => '06 12345678', :required => true %>
+                <% end %>
+                <!-- <input type="text" placeholder="06 12345678" tabindex="0" readonly="readonly" autocomplete="off" class="formdiv" id="Items_input"> -->
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>    
+    </div>
+    <div class="mijnadediv2nd">
+      <div class="mijabotdiv">
+        <div class="mijbothome">
+          <%= image_tag 'homeicon.png' %> Homepagina
+        </div>
+        <p>Voor uw bescherming verloopt deze conversatie via onze server en 
+          worden e-mailadressen afgeschermd. Om bijvoorbeeld spam te
+          voorkomen en de veiligheid van handelen te vergroten, behoudt 
+          WELOCO zich het recht voor om verdachte conversaties te filteren 
+          en te staken.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
             <% end %>
-            
+           <script type="text/javascript">
+
+           $(document).ready(function(e) {
+                  
+                $('a.remote-delete').click(function(e) {
+                var ans = confirm('Are you sure?');
+                if(ans == true)
+                {
+                     var path = this.href;
+                     var finalpath = path.split('/').join(' ');
+                     var id = finalpath.split(' ')[4];
+                     $('#listing '+id).hide();
+                     $.post(this.href, { _method: 'delete' }, null, "script");
+                     
+                     return false;
+                    
+                }
+                else
+                {
+                    e.preventDefault();
+                }
+                });
+            });
+           </script>

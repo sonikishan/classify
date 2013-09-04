@@ -1,12 +1,28 @@
    <% if @characteristics_status.eql?("1") %>
         <% @characteristics_list.each_with_index do |characteristic,i| %>
-            <%= fields_for "advertisement[advertisement_characteristics_attributes][#{i}]",@advertisement.advertisement_characteristics.build do |char| %>
-                 <% @characteristic = characteristic %>
-                 <% @i = i %>
-                 <%= render :partial => "advertisements/advertisement_characteristics", :locals => {:f => char} %>
+          <% @characteristic = characteristic %>
+          <% @i = i %>
+          <%= label_tag :characteristic, @characteristic.name, :class => "chr_listing",:style => 'margin: 0 10px 0 0;float:left;' %>
+          <% if @characteristic.input_kind == "selectbox" %>
+            <%= fields_for "advertisement[advertisement_characteristics_attributes][#{i}]",@advertisement_characterstic do |char| %>
+              <div style="float:left;width: 100%;">
+                <%= render :partial => "advertisements/advertisement_characteristics", :locals => {:f => char} %>
+              </div>
             <% end %>
+          <% else %>
+            <% @characteristic.default_values.each_with_index do |j,index| %>
+              <% @j = j %>
+              <% @index = Time.now().strftime("%d%m%Y%I%M%S%3N") %>
+              <%= fields_for "advertisement[advertisement_characteristics_attributes][#{@index}]",@advertisement_characterstic do |char| %>
+                <div style="float:left;width: 100%;">
+                  <%= render :partial => "advertisements/advertisement_characteristics", :locals => {:f => char} %>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
         <% end %>
     <% end %>
+
     <script type="text/javascript">
   $(document).ready(function() {
 

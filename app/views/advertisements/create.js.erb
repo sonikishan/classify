@@ -1,0 +1,2 @@
+$('#ad_create').replaceWith("<%= escape_javascript(render :partial => "advertisements/ad_show", :locals => {:advertisement => @advertisement,:flag => @flag}) %>")
+$('fieldset#step4_Ad').show();

@@ -1,47 +1,83 @@
 <div class="leftmenu">
     <h1>Verfijn uw resultaten</h1>
-    <p>Prijs van/tot</p>
-    <input type="text" title="" value="van " class="field narrow"> <input type="text" title="" value="tot" class="field narrow">
-    <a href="#"><%= image_tag "go_arrow.png" %></a>
+    <h1>Prijs van/tot</h1>
+  <%= form_for @characteristic.default_values.new, :url => price_search_path , :method => :get, :remote => true do |f|%>
+    <p>
+      <%= text_field_tag :minprice, params[:min_price], :class=> "field narrow"%>
+      <%= text_field_tag :maxprice, params[:max_price], :class=> "field narrow"%>
+      <%= image_submit_tag("go_arrow.png",:id => "validation_for_price") %>
+    </p>
+     <%= hidden_field_tag :category_id,  @category.id %>
     <h1>Groep en Rubriek</h1>
-    <p>Dieren en Toebehoren</p>
-    <p><a href="#">Vogels</a> | <a href="#">Hokken en Kooien</a></p>
+    <p><%= @root.name %></p>
+    <p><a href="#"><%= @parent.name %></a> | <a href="#"><%= @category.name %></a></p>
     <div id="catediv">
-      <h1>Conditie</h1>
-      <div id="skin_1" class="radiodiv" >
-        <input type="radio" name="music" value="1" id="music-1" /><span> Nieuw</span>
-        <input type="radio" name="music" value="1" id="music-2" />
-        <span> Zo goed als nieuw</span>
-        <input type="radio" name="music" value="1" id="music-3" /> <span> Gebruikt</span>
-      </div>
-      <h1>Type</h1>
-      <div id="skin_1" class="radiodiv" >
-        <input type="radio" name="music" value="1" id="music-1" />
-        <span> Broedkooi of Kweekkooi </span>
-        <input type="radio" name="music" value="1" id="music-2" /> <span> Vogelkooi</span>
-        <input type="radio" name="music" value="1" id="music-3" /> <span> Volière</span>
-        <input type="radio" name="music" value="1" id="music-3" /> <span> Overige typen</span>
-      </div>
-      <h1>Materiaal</h1>
-      <div id="skin_1" class="radiodiv" >
-        <input type="radio" name="music" value="1" id="music-1" /> <span> Aluminium  </span>
-        <input type="radio" name="music" value="1" id="music-2" /> <span> Hout</span>
-        <input type="radio" name="music" value="1" id="music-3" /> <span> Kunststof </span>
-        <input type="radio" name="music" value="1" id="music-3" /> <span> Metaal </span> 
-        <input type="radio" name="music" value="1" id="music-3" /> <span> Overige materialen</span>
-      </div>
-      <h1>Levering</h1>
-      <div id="skin_1" class="radiodiv" >
-        <input type="radio" name="music" value="1" id="music-1" /> <span> Ophalen  </span>
-        <input type="radio" name="music" value="1" id="music-2" /> <span> Verzenden </span>
-        <input type="radio" name="music" value="1" id="music-3" /> 
-        <span> Ophalen of Verzenden</span>
-      </div>
-      <h1>Aangeboden sinds</h1>
-      <div id="skin_1" class="radiodiv" >
-        <input type="radio" name="music" value="1" id="music-1" /> <span> Vandaag </span>
-        <input type="radio" name="music" value="1" id="music-2" /> <span> Een week </span>
-        <input type="radio" name="music" value="1" id="music-3" /> <span> Altijd</span>
-      </div>
+     <% @category.characteristics.each do |char| %>
+         <% if char.input_kind == "selectbox" %>
+           <h1><%= label "characteristics","name","#{char.name} ",:class => "chr_listing",:style => 'margin: 0 10px 0 0;float:left;' %> </h1>
+           <% splited_options = char.default_values.collect {|i| "<option>#{i.default_value}</option>"}.join %>
+          <div class="cat_select">
+            <%= select "characteristics_select","default_value", "#{splited_options}".html_safe ,{:prompt =>"Select Value"}%>
+          </div>
+       <% end %>
+       <% if char.input_kind == "checkbox" %>
+          <h1><%= f.label "#{char.name} :",:class => "chr_listing",:style => 'margin: 0 10px 0 0;' %></h1>
+          <div class="cat_checkbox">
+            <% char.default_values.each_with_index do |j,index| %>
+                <%= check_box_tag "characteristic[default_value][]",  j.default_value, false  %>
+                 <%= label_tag "characteristic",j.default_value%></br>
+            <% end %>
+          </div>
+       <% end %>
+       <% if char.input_kind == "radiobutton" %>
+        <h1><%= label "characteristics","default_values","#{char.name}",:class => "chr_listing",:style => 'margin: 0 10px 0 0;' %></h1>
+        <div class="cat_radiobutton" >
+           <% char.default_values.each_with_index do |j,index| %>
+            <%= label_tag "characteristic",j.default_value%>
+            <%= f.radio_button :default_value,j.default_value,:class => 'ad_btn' %></br>
+           <% end %>
+        </div>
+       <% end %>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
+  <div id="imagaddiv">
+    <div id="show_result" %>
+    <%= render :partial => "show_result" %>
     </div>
   </div>
+  <script type="text/javascript">
+  $(function () {
+         $('#characteristics_select_default_value').change(function(){
+         
+            var value = $('#new_default_value').serialize();
+              $.ajax({
+                type: 'POST',
+                url: '/price_search', //sumbits it to the given url of the form
+                data: value,
+                dataType: 'script'
+              });
+          
+          });
+          $('.cat_checkbox').click(function(){
+           
+            var value = $('#new_default_value').serialize();
+              $.ajax({
+                type: 'POST',
+                url: '/price_search', //sumbits it to the given url of the form
+                data: value,
+                dataType: 'script'
+              });
+          });
+          $('.cat_radiobutton').click(function(){
+            var value = $('#new_default_value').serialize();
+            $.ajax({
+                type: 'POST',
+                url: '/price_search', //sumbits it to the given url of the form
+                data: value,
+                dataType: 'script'
+              });
+          });
+        });
+    </script>

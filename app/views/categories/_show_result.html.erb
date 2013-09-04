@@ -1,0 +1,38 @@
+<div class="blackmain" style="top:-38px;">
+    <div class="blacktab">
+ 
+        <div class="tablackbig" style="width: 95%;">
+          <ul>
+            <li class="tablack"><%= @category.name %></li>
+          </ul>
+           <div class="resultext"></div>
+
+           <div class="resultext"><%= @advertisement.nil? ? "0" : @advertisement.count  %> resultaten</div>
+                <div class="dropopt"> 
+                    <div class="menu price">
+                        <%= sortable "price",'prijs' %>
+                     </div>
+                     <div class="menu">
+                       <%= sortable "created_at",'Datum' %>
+                     </div>
+                     <div class="last">
+                            Locatie                          
+                     </div>
+                     <div class="nextprearrow" style="margin:4px 0 0;"> <img src="/assets/next-prv-arrow.png" alt="" title="" /></div>
+                </div>
+        </div>
+             </div>
+         </div>
+     <%= hidden_field_tag :direction, params[:direction] %>
+    <%= hidden_field_tag :sort, params[:sort] %>   
+     <% if !@advertisement.blank? %>
+      <% @advertisement.each do |advertisement| %>
+     <div class="adbox">
+          <%= link_to image_tag(advertisement.advertisement_images.first.blank? ? 'NoImageAvailable.jpg' : advertisement.advertisement_images.first.image.url,:size => "90x55"),advertisement %>
+          <h1><%= truncate(advertisement.title, :length => 12) %> <span>€  <%= advertisement.price %> </span></h1>
+          <p><%= advertisement.values_xml.blank? ? "-" : truncate(strip_tags(advertisement.values_xml), :length => 12) %></p>
+      </div>
+       <% end %>
+       <% else %>
+       <%= "No result found" %>
+       <% end %>

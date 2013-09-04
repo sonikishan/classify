@@ -22,7 +22,15 @@
 	//});
 //});
 $(function() {
-
+  $('form').on('click', '.add_fields',function(event) {
+  var time,regexp;
+    time = new Date().getTime();
+    regexp = new RegExp($(this).data('id'), 'g');
+    $(this).before($(this).data('fields').replace(regexp, time));
+    $(this).before($('.photo_for_ad_'+time).trigger('click'));
+    return event.preventDefault();
+});
+  
 	if($('h1#user_management').text() == "Users List")
 	{
 		$('.tabs .tab-nav > li.active').removeClass('active')	
@@ -85,6 +93,11 @@ $(function() {
 
     $('#flash_message').delay(3000).fadeOut();
     
+
+  $(".dropopt a").click(function() {
+    $.getScript(this.href);
+    return false;
+  });
 });
 
 

@@ -58,7 +58,7 @@
       <% advertise.advertisement_images.each do |img| %>
       <div class="adbox">
         <%= link_to image_tag(img.image, :size => "90x55"), advertise %>
-        <h1><%= truncate(advertise.title, :length => 12) %> <span>€  <%= advertise.min_price %> to <%= advertise.max_price %></span></h1>
+        <h1><%= truncate(advertise.title, :length => 12) %> <span>€  <%= advertise.price %> </span></h1>
         <p><%= truncate(strip_tags(advertise.values_xml), :length => 12) %></p> 
         <!--<p><%= raw(truncate(advertise.values_xml, :length => 12)) %></p> -->
       </div>
@@ -67,19 +67,26 @@
   </div>
 <% else %>
 <div style="text-align: center;">
-  <h2>
-    <%= link_to "Advertisements List","#",:id=>"advertisements_list_header",:class => "active_Ad" %> | 
-    <%= link_to "Abuse Advertisement List","#",:id => "abuse_ads_list_header",:remote => true %>  
-  </h2>
+    <h2>
+      <%= link_to "Advertisements List","#",:id=>"advertisements_list_header",:class => "active_Ad" %> | 
+      <%= link_to "Abuse Advertisement List","#",:id => "abuse_ads_list_header",:remote => true %>  
+    </h2>
+
+        <div style="float:right;margin-top: -15px;">
+        <%= form_tag advertisements_path, :method => 'get', :id => "advertisements_search" do %>
+          <%= text_field_tag :search, params[:search] ,:placeholder => "Enter search by title" %>
+          <%= submit_tag "Search", :name => nil %>
+        <% end %>  
+      </div>
 </div>
-<div id="advertisement_list" >
-  <h3><strong><%= link_to 'New Advertisement', new_advertisement_path %></strong></h3>
-  <%= render :partial => "advertisement_listing", :locals => {:advertisements =>  @advertisements } %>
-</div>
-<div id="abuse_list" style="display:none;">
-  <%= render :partial => "abuse_ads", :locals => {:advertisement_abuse =>  @advertisement_abuse } %>
-</div>
-<% end %>
+    <h3><strong><%= link_to 'New Advertisement', new_advertisement_path %></strong></h3>
+    <div id="advertisement_list" >
+      <%= render :partial => "advertisement_listing", :locals => {:advertisements =>  @advertisements } %>
+    </div>
+    <div id="abuse_list" style="display:none;margin-top: 10px;">
+      <%= render :partial => "abuse_ads", :locals => {:advertisement_abuse =>  @advertisement_abuse } %>
+    </div>
+  <% end %>
 <% end %>
 
 <script type="text/javascript">
@@ -87,6 +94,7 @@ $('#advertisements_list_header').click(function(){
   $('#advertisements_list_header').addClass('active_Ad')
   $('#abuse_ads_list_header').removeClass('active_Ad')
   $('#advertisement_list').show();
+  $('#advertisements_search').show();
   $('#abuse_list').hide();
   $.get('/advertisements',function(data){
         },"script");
@@ -95,10 +103,13 @@ $('#abuse_ads_list_header').click(function(){
   $('#advertisements_list_header').removeClass('active_Ad')
   $('#abuse_ads_list_header').addClass('active_Ad')
   $('#advertisement_list').hide();
+  $('#advertisements_search').hide();
   $('#abuse_list').show();
   $.get('/abuse_ads_listing_admin',function(data){
         },"script");
 
 });
-
 </script>
+
+
+ 

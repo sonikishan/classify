@@ -1,0 +1,227 @@
+  <div class="maintitle">
+  <h1>
+    <%= @advertisement.title %>
+    <span><%= @advertisement.created_at.strftime("%b %d, %Y") %></span>
+  </h1> 
+  <div class="sliderdiv">
+    <div class="slidethumdiv">
+      <div id="carousel-wrapper">
+        <div id="carousel">
+          <% if @advertisement.advertisement_images.blank? %>
+           <span id="no_img"><%= image_tag('NoImageAvailable.jpg', :size => "397x264") %></span>
+          <% else %>
+            <% @advertisement.advertisement_images.each do |img| %>
+           <span id="pixar_<%= img.id%>" class="<%= img.id%> img"><%= image_tag(img.image, :size => "397x264") %></span>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div id="thumbs-wrapper">
+        <div id="thumbs">
+           <% if @advertisement.advertisement_images.blank? %>
+             <a href="#no_img" ><%= image_tag('NoImageAvailable.jpg', :size => "90x55") %> </a>
+          <% else %>
+            <% @advertisement.advertisement_images.each do |img| %>
+            <a href="#pixar_<%= img.id%>" ><%= image_tag(img.image, :size => "90x55",:rel => "facebox") %></a>
+            <% end %>
+          <% end %>
+        </div>
+        <a id="prev" href="#"></a>
+        <a id="next" href="#"></a>
+      </div>
+    </div>
+  </div>    
+  <div class="slidertext iphone">
+    <h3>Beschrijving <span>Volières</span></h3>
+    <% if @advertisement.values_xml == "<br>" %>
+      <p><%= raw(@advertisement.values_xml) %></p>                              
+    <% else %>  
+      <p class="scrolling"><%= raw(@advertisement.values_xml) %></p> 
+    <% end %>
+  </div>          
+  <div class="footer">
+    <div class="footerlink">
+      <h1>Kenmerken</h1>
+      <% @advertisement.advertisement_characteristics.each do |char| %>
+        <ul>
+            <% if !char.value.nil? %>
+           <li><strong><%= char.characteristic.nil? ? '-' : char.characteristic.name %></strong> :
+            <% if !char.default_value_id.nil? %>
+              <% if char.characteristic.input_kind == "checkbox" %>
+                <%= char.default_value.default_value %>
+              <% else %>
+                <%= char.value %>
+              <% end %>
+            <% else %>
+              <%= char.value %>
+            <% end %>
+          </li>
+           <% end %>
+       </ul>
+      <% end %>
+    </div>
+    <div class="footercont">
+     
+      <%= link_to (image_tag("search_icon.jpg")+"Bekijk grote foto's"), "#",:id => "enlarge_img" %>
+     
+      <% if user_signed_in? and @advertisement.approved == true %>
+        <%= link_to (image_tag("logo-footer.png")+"Meld misbruik"), "#abuse-report", rel: "facebox" %> 
+      <% end %>  
+    </div>    
+  </div>
+</div>
+
+<!-- Abuse Report Popup div -->
+<div id="abuse-report" style="display:none">
+  <div class="mijnadediv">
+    <div class="logmeldiv">
+      <h1 id="logo"> <%= link_to (image_tag "logo.png"), root_path %></h1>
+      <h2>MELD MISBRUIK</h2>
+    </div>
+    <div class="meldbluediv">
+      <div class="melddivmain">
+        <p>Bij iedere melding van misbruik zullen wij nagaan of de melding geoorloofd is.<br>   Wanneer de misbruik meldende partij in haar gelijk wordt gesteld, dan zal worden besloten het betreffende document of gebruiker te verwijderen van de website.
+        </p>
+        <div class="meldtextdiv">
+          <%= form_tag(abuse_report_advertisement_path(@advertisement), :method => "post",) do %>
+            <%= select_tag(:pulldown, options_for_select([["Positive" , "1" ],["Negative", "2"]] )) %>
+            <%= text_area_tag :message, nil, :class => 'textarea1', :placeholder => "Enter your comments here" %>
+            <%= submit_tag "Verzenden", :class => "butorng" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bluebox">
+  <div class="regisrer_box"><h1><strong>EUROKOOI</strong></h1> 
+    1½ jaar actief op Marktplaats<br>
+    <%= rating_for @advertisement, "ratings" %>
+    <!--     <%= image_tag "star-small-org.png" %>
+    <%= image_tag "star-small-org.png" %>
+    <%= image_tag "star-small-wight.png" %>
+    <%= image_tag "star-small-wight.png" %>
+    <%= image_tag "star-small-wight.png" %><br/> --> 
+    
+    <% if @advertisement.user_id %>  
+      <% user = @advertisement.user_id %>
+      <% @ad_user = User.find(user) %>
+    <% end %>  
+  </div>
+  <div class="regisrer_box">
+    <h1><strong>€  <%= @advertisement.price %></strong></h1>Alleen ophalen<br>
+  </div>
+  <div class="regisrer_box">
+    <%= image_tag "email-icon.png", :style => "float:left; margin:0 20px 0 0;" %>
+    <h3><%= link_to "E-mail", "#email-link", rel: "facebox" %></h3>
+</div>
+<div id="email-link" style="display:none;">
+  <div class="poup">
+    <div class="mijnadediv">
+      <div class="bluetabdiv">
+        <div class="tabdiv">
+          <section class="tabs">
+            <ul class="tab-nav">      
+              <li class="active">
+                <% if user_signed_in? %>
+                  <%= link_to "Uitloggen", destroy_user_session_path, :method => :delete %>
+                <% else %>  
+                  <%= link_to "Inloggen", new_user_registration_path, id: "email_login_popup" %>
+                <% end %>
+              </li>
+            </ul>
+          </section>  
+        </div>
+      </div>
+      <div class="logmeldiv">
+        <h1 id="logo">
+          <%= link_to image_tag('logo.png'), root_path %>
+        </h1>        
+        <div class="toplinkcont" style="padding-top:40px;">
+          <%= image_tag 'blue_arrow.png' %><%= link_to 'Terug naar resultaten', root_path %>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="bluediv"></div>   
+      <div class="formmeldiv">
+        <div class="contactopnemenen">
+          <%= form_for @contact,:url => contact_advertiser_advertisement_path(@advertisement), :id => 'contact_advertiser', :method => "post" do |f| %>
+            <div class="contactopnemenenleft">
+              <h1>Contact opnemen met EUROKOOI</h1>
+              <%= f.text_area :message,:class => 'textarea12', :placeholder => "Enter your comments here", :required => true %>
+              
+              <div class="submdiv">
+                <%= submit_tag "Versturen", :class => "btorg" %>
+                
+                <input type="button" class="submdiv" id="clear-fields"  value="Annuleren" name="Wijzig">
+              </div>
+            </div>
+            <div class="contactopnemenenright">
+              <h1>Uw contactgegevens</h1>        
+              <div class="cotopdiv">
+                E-mailadres
+                <% if user_signed_in? %>
+                  <% email = current_user.email %>
+                  <%= f.email_field :email, :value => email, :class => 'formdiv', :required => true %>
+                <% else %>  
+                  <%= f.email_field :email, :class => 'formdiv', :placeholder => 'you@example.com', :required => true %>
+                <% end %>
+               
+              </div>
+              <div class="cotopdiv">
+                Telefoonnummer
+                <% if user_signed_in? %>
+                  <%= f.phone_field :phone, :value => current_user.phone, :class => 'formdiv', :required => true %>
+                <% else %>  
+                  <%= f.phone_field :phone,  :class => 'formdiv', :placeholder => '06 12345678', :required => true %>
+                <% end %>
+                
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>    
+    </div>
+    <div class="mijnadediv2nd">
+      <div class="mijabotdiv">
+        <div class="mijbothome">
+          <%= image_tag 'homeicon.png' %> Homepagina
+        </div>
+        <p>Voor uw bescherming verloopt deze conversatie via onze server en 
+          worden e-mailadressen afgeschermd. Om bijvoorbeeld spam te
+          voorkomen en de veiligheid van handelen te vergroten, behoudt 
+          WELOCO zich het recht voor om verdachte conversaties te filteren 
+          en te staken.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="regisrer_box">Plaats bod <br>
+  <div class="bod">
+    <%= form_tag(bid_advertisement_path(@advertisement), :method => "post",) do %>
+      <%= text_field_tag :price, nil, :class => 'bod field', :placeholder=> "€" %>
+      <%= submit_tag "Plaats bod", :class => 'bod_btn' %>
+    <% end %>
+  </div> 
+ 
+  <div class="prize">
+    <ul>
+      <% @bids = @advertisement.bids.order("id desc") %>
+      <% @bids.each do |bid| %>
+        <% if bid.confirmed_at %>
+          <li><%= get_username(bid.user_id) %></li>
+          <li>€ <%= bid.price %></li>
+          <li><%= bid.confirmed_at.strftime("%b %d, %Y") %></li>
+        <% end %>  
+      <% end %>
+    </ul>  
+  </div>  
+   
+  </div>
+  <div>
+    <%= link_to "Wijzig hier uw advertentie" ,edit_advertisement_path(@advertisement),:class => "edit_Ad"%>
+  </div>
+</div>    

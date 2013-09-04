@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20130715060738818) do
     t.string   "value"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+    t.integer  "default_value_id"
   end
 
   create_table "advertisement_images", :force => true do |t|
@@ -82,6 +83,10 @@ ActiveRecord::Schema.define(:version => 20130715060738818) do
     t.boolean  "approved",                :default => true
     t.float    "min_price"
     t.float    "max_price"
+    t.string   "name"
+    t.string   "email"
+    t.integer  "zipcode"
+    t.integer  "phonenumber"
   end
 
   add_index "advertisements", ["category_id"], :name => "index_advertisements_on_category_id"
@@ -168,6 +173,13 @@ ActiveRecord::Schema.define(:version => 20130715060738818) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.string   "phone"
+  end
+
+  create_table "default_values", :force => true do |t|
+    t.integer  "characteristic_id"
+    t.string   "default_value"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "favorites", :force => true do |t|

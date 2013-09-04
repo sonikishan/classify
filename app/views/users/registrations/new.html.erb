@@ -58,7 +58,7 @@
                 <%= s.password_field :password, class: "formdiv", placeholder: "Wachtwoord" %>
                 <% if devise_mapping.rememberable? %>
                   <div id="remember_me">
-                    <%#= s.check_box :remember_me %> <%#= s.label :remember_me , "Laat mij ingelogd blijven"%>
+                    <%= s.check_box :remember_me %> <%= s.label :remember_me , "Laat mij ingelogd blijven"%>
                     <% if devise_mapping.recoverable? && controller_name != 'passwords' %>
                       <div id="forgot_password">
                         <%= link_to "Wachtwoord vergeten?", new_password_path(resource_name) %><br />

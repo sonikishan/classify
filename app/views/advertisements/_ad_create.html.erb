@@ -1,0 +1,208 @@
+<%= form_for(@advertisement) do |f| %>
+<%= hidden_field_tag "advertisement_ids","#{@advertisement.id}" %>
+    <% if @advertisement.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@advertisement.errors.count, "error") %> prohibited this advertisement from being saved:</h2>
+              <ul >  
+                <% @advertisement.errors.full_messages.each do |msg| %>
+                  <li ><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <fieldset>
+            <legend style="display:none">Kies uw rubriek</legend>  
+            <% if controller.action_name  == "new" or  controller.action_name  == "create" %>
+            <div class="selectbox3">
+              <legend>Kies groep</legend>
+              <%= f.select :category_id,  @category.all.map{|x| [ x.name,  x.id]}, {}, :multiple => false, :size => 15%>
+            </div>
+            <% elsif controller.action_name  == "edit" or controller.action_name  == "update" %>
+            <div class="selectbox3">
+              <legend>Kies groep</legend>
+              <%= f.select :category_id,  @category.all.map{|x| [ x.name,  x.id]}, {:selected => "#{@rootcategory.id}"}, :multiple => false, :size => 15%>
+            </div>
+            <% end %>
+            <div class="selectbox3">
+              <legend>Kies subgroep</legend>
+              <div class="secondphase" id="second_phase" >
+                <%= render :partial => "second_phase" %>
+              </div>
+            </div>
+            <div class="selectbox3last">
+              <legend>Kies rubriek</legend>
+              <div class="thirdphase" id="third_phase" >
+                <%= render :partial => "third_phase" %>
+              </div>
+            </div> 
+
+          </fieldset>
+          <fieldset>
+           
+            <legend style="display:none">Advertentie <br/> aanmaken</legend>
+            <div class="prijsleft" >
+              <!-- <input type="text" size="30" name="advertisement[title]" id="advertisement_title" style="background:#F1F1F2; width:252px;"> -->
+              <%= f.label :title, "Advertentie titel" %><br />
+              <%= f.text_field :title , :id => 'advertisement_title', :style => "background:#F1F1F2; width:252px;padding: 5px;" %>
+              <div class="prijsdiv">
+                <h1>Prijs</h1>
+                <div class="liwid lowwid">
+                  <div class="radiodiv">
+                    <div id="skin_1" class="radiodiv" >
+                      <input type="radio" name="music" value="1" id="music-1" />
+                      <a href="#">€</a>
+                        <%= f.text_field :price,:class => "input2" %>
+                      <!--<span class="span"> tot</span> -->
+                       <%#= f.text_field :max_price,:class => "input2" %>
+                    </div>
+                  </div>
+                </div>
+                <div class="liwid lowwid">
+                  <div class="radiodiv">
+                    <div id="skin_1" class="radiodiv " >
+                      <input type="radio" name="music" value="1" id="music-1" />
+                      <span> Kies een prijsstelling <%= image_tag "yellow_button.png" %></span>
+                      <ul >
+                        <li><a href="#">Beiden</a></li>
+                        <li><a href="#">Nader overeen te komen</a></li>
+                        <li><a href="#">Op aanvraag</a></li>
+                        <li><a href="#">Zie omschrijving</a></li>
+                        <li><a href="#">Ruilen</a></li>
+                        <li><a href="#">Gratis</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="step1" class="projright">
+              <%= f.label :values_xml, "Advertentie tekst",:style=>" margin-bottom: 10px;" %><br />
+              <%= f.text_area :values_xml, :class => "textareastep2", :style => "height:160px;" %>
+              
+              <div class="levediv">
+                <label for="advertisement_title">Leveringsvoorkeur</label>
+                <br>
+                <div class="selectareaoreng">
+                  <select name="Items" id="Items" class="selectbox">
+                    <option value="opetion1">Rubriek</option>
+                    <option value="opetion1">CASA</option>
+                    <option value="opetion1">CASA</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Below code is for Image upload  -->
+
+           <!--<%#= f.label :image, "Uploaden foto's" %><br /> -->
+            <!-- <div style="max-width: 100px; max-height: 100px; margin: 10px 0 0 0; clear: both;" class="fileupload-preview fileupload-exists thumbnail">
+              <img style="height:100px; width:100px;" id="img_prev" src="#" alt="" />
+            </div>
+            <div>-->
+              <%#= fields_for :advertisement_/assets do |ff| %>
+              <%#= render :partial => "advertisement_images", :locals => {:f => ff} %>
+                <!-- <%#= f.file_field :image %> -->
+                 <%# end %>
+                 <%#= link_to_add_fields "Add Images ", f, :advertisement_images %>
+                <!--<input id= "imgupload" type="file" onchange="readURL(this);">
+               
+            </div> -->
+            <% if controller.action_name  == "new" %>
+               <div class="uplodphoto">
+                    <h3>Uploaden foto's</h3>
+                    <div class="photomaindiv">
+                         <%= f.fields_for :advertisement_images,@advertisement.advertisement_images.build do |pc| %>
+                            
+                          <%= render :partial => "advertisements/advertisement_images", :locals => {:f => pc} %>
+                         <% end %>
+                    </div>
+                    <%= link_to_add_fields "", f, :advertisement_images %>
+            </div>
+            <% elsif controller.action_name  == "edit" %>
+              
+              <div class="uplodphoto">
+              <h3>Uploaden foto's</h3>
+              <div class="photomaindiv">
+                <% @ad_image.each do |img| %>
+              <div class="photomaindiv">
+                <%= image_tag(img.image.url,:size =>"100X100",:class => "photos") %>
+              </div>
+              <% end %>
+                   <%= f.fields_for :advertisement_images,@advertisement.advertisement_images.build do |pc| %>
+                      
+                    <%= render :partial => "advertisements/advertisement_images", :locals => {:f => pc} %>
+                   <% end %>
+              </div>
+              <%= link_to_add_fields "", f, :advertisement_images %>
+            </div>
+
+            <% end %>
+              
+            
+            <h3 style="float: left;">Kenmerken</h3>
+            <div class="kenmdiv">
+              <div class="kemsubdiv">
+                <% @advertisement = @advertisement %>
+                <div id="characteristics_list" class="kenmdivgrybox">
+                    <%= render :partial => "advertisements/characteristics_listing", :locals => {:characteristics_status => @characteristics_status }%>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend style="display:none">Bevestig contact <br/> gegevens</legend>
+            <div class="step3div">        
+              <h1>Uw naam bij de advertentie</h1>
+
+              <%= f.text_field :name , :id=>"Items_input" ,:class=>"formdiv",:placeholder=>"Please Enter Name"%>
+              
+              <h1>E-mailadres</h1>
+              <%= f.text_field :email , :id=>"Items_input" ,:class=>"formdiv",:placeholder=>"Please Enter E-mail address"%>
+             
+              <h1>Postcode</h1>
+              <%= f.text_field :zipcode , :id=>"Items_input" ,:class=>"formdiv",:placeholder=>"Please Enter Zipcode"%>
+               
+              <div class="redidiv">
+                <div id="skin_1" class="radiodiv" style="width:193px;" >
+                  <input type="radio" name="music" value="1" id="music-1" />                   <span class="span"> lk woon in Nederland</span>                      
+                </div>
+              </div>
+              <div class="redidiv redmarg">
+                <div id="skin_1" class="radiodiv" style="width:193px;" >
+                  <input type="radio" name="music" value="1" id="music-1" />                   
+                  <span class="span"> Toon de kaart</span>                      
+                </div>
+              </div>    
+              <h1>Telefoonnummer</h1>                
+                <div class="form2ndinpt">
+                  <%= f.text_field :phonenumber , :id=>"Items_input" ,:class=>"formdiv",:placeholder=>"Please Enter Telephone Number"%>
+                 </div>
+                <%#= link_to "Plaats advertentie",'#',:id => 'submit_Ad' %>
+                <input id="submit_Ad" class="but" type="submit" name="Wijzig" value="Plaats advertentie" >
+                
+            </div>
+          </fieldset>
+           <fieldset>
+            <legend style="display:none">Bekijk uw</legend>  
+          </fieldset>
+           <% end %>
+         <script type="text/javascript">
+  function readURL(input,id1) {
+
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#img_prev_'+id1).attr('src', e.target.result).height(100).width(100);
+
+        
+      };
+      
+      reader.readAsDataURL(input.files[0]);
+    }
+    else {
+      var img = input.value;
+      $('#img_prev').attr('src',img).height(200);
+    }
+    // $("#x").show().css("margin-right","10px");
+  }
+</script>

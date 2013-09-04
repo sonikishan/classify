@@ -8,4 +8,12 @@ class Category < ActiveRecord::Base
                    length: { minimum: 2, maximum: 20 }
   has_many :characteristics
   has_many :advertisements
+
+  def self.search(search)
+    if search
+      where('name LIKE ? ',"%#{search}%")
+    else
+      scoped
+    end
+  end
 end

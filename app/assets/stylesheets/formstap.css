@@ -2,6 +2,7 @@
 fieldset {
   border: none;
   width: 100%;
+  
 }
 
 /* line 8, ../../app/assets/stylesheets/formToWizard.css.scss */
@@ -14,7 +15,7 @@ legend {
   border:1px solid #dcddde;
   -moz-border-radius: 4px 4px 4px 4px; -webkit-border-radius: 4px 4px 4px 4px; border-radius: 4px 4px 4px 4px; behavior: url(PIE.htc);
   background:#f6921e;
-  width:180px;
+  width:178px;
   
   
 }
@@ -44,51 +45,18 @@ legend {
 /* line 26, ../../app/assets/stylesheets/formToWizard.css.scss */
 #steps {
   list-style: none;
-  width: 100%;
+  width: 81%;
   overflow: hidden;
-  margin: 10px 0 0 0;
+  margin: 10px  70px 0;
   padding: 0px;
-  background:image-url("dotbord.jpg") repeat-x center left;
+  background:url(/assets/dotbord.jpg) repeat-x center left;
   
   
   
  
 }
 
-/* line 27, ../../app/assets/stylesheets/formToWizard.css.scss */
-#steps li {
-  font-size: 24px;
-  float: left;
-  padding: 10px;
-  color: #b0b1b3;
-  width:140px;
-  margin:0 35px 0 0;
-  border:1px solid #dcddde;
-  -moz-border-radius: 4px 4px 4px 4px; -webkit-border-radius: 4px 4px 4px 4px; border-radius: 4px 4px 4px 4px; behavior: url(PIE.htc);
-  background:#fff;
-  text-align:center;
-}
 
-/* line 28, ../../app/assets/stylesheets/formToWizard.css.scss */
-#steps li span {
-  font-size: 11px;
-  display: block;
-}
-
-/* line 29, ../../app/assets/stylesheets/formToWizard.css.scss */
-#steps li.current {
-  color: #000;
-  background: #ffd18b; /* Old browsers */
-    background: -moz-linear-gradient(top, #ffd18b 0%, #f8a036 50%, #f6921e 51%, #f6921e 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffd18b), color-stop(50%,#f8a036), color-stop(51%,#f6921e), color-stop(100%,#f6921e)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #ffd18b 0%,#f8a036 50%,#f6921e 51%,#f6921e 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #ffd18b 0%,#f8a036 50%,#f6921e 51%,#f6921e 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #ffd18b 0%,#f8a036 50%,#f6921e 51%,#f6921e 100%); /* IE10+ */
-    background: linear-gradient(to bottom, #ffd18b 0%,#f8a036 50%,#f6921e 51%,#f6921e 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd18b', endColorstr='#f6921e',GradientType=0 ); /* IE6-9 */
-     border:1px solid #dcddde;
-  -moz-border-radius: 4px 4px 4px 4px; -webkit-border-radius: 4px 4px 4px 4px; border-radius: 4px 4px 4px 4px; behavior: url(PIE.htc);
-}
 
 /* line 30, ../../app/assets/stylesheets/formToWizard.css.scss */
 #makeWizard {
@@ -124,45 +92,50 @@ fieldset {
 
 /*------- 22-04-2013 End --------*/
 
-/* line 26, ../../app/assets/stylesheets/formToWizard.css.scss */
-#stepsmall {
+
+
+
+
+
+
+#steps {
   list-style: none;
   width: 100%;
   overflow: hidden;
   margin: 10px 0 0 0;
   padding: 0px;
-  background:url(../images/dotbord.jpg) repeat-x center left;
+  background:url(/assets/dotbord.jpg) repeat-x center left;
+  
+  
+  
  
 }
 
-#stepsmall li  {
-  font-size: 12px;
+/* line 27, ../../app/assets/stylesheets/formToWizard.css.scss */
+#steps li {
+  font-size: 24px;
   float: left;
   padding: 10px;
   color: #b0b1b3;
-  width:149px;
-  margin:0 31px 0 0;
+  width:140px;
+  margin:0 35px 0 0;
   border:1px solid #dcddde;
   -moz-border-radius: 4px 4px 4px 4px; -webkit-border-radius: 4px 4px 4px 4px; border-radius: 4px 4px 4px 4px; behavior: url(PIE.htc);
   background:#fff;
   text-align:center;
-  z-index:10000;
-  position:relative;
 }
-
-#stepsmall li.last  {
-  margin:0 0 0 0;
-}
-
 
 /* line 28, ../../app/assets/stylesheets/formToWizard.css.scss */
-#stepsmall li span {
+#steps li span {
   font-size: 11px;
   display: block;
 }
+#steps li.showad{
+  width:183px;
+}
 
 /* line 29, ../../app/assets/stylesheets/formToWizard.css.scss */
-#stepsmall li.current {
+#steps li.current {
   color: #000;
   background: #ffd18b; /* Old browsers */
     background: -moz-linear-gradient(top, #ffd18b 0%, #f8a036 50%, #f6921e 51%, #f6921e 100%); /* FF3.6+ */
@@ -175,7 +148,3 @@ fieldset {
      border:1px solid #dcddde;
   -moz-border-radius: 4px 4px 4px 4px; -webkit-border-radius: 4px 4px 4px 4px; border-radius: 4px 4px 4px 4px; behavior: url(PIE.htc);
 }
-
-
-
-

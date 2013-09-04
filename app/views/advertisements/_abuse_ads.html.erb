@@ -1,27 +1,34 @@
+
 <div id = "abuse_ads">
-<table id="admin_management">
-  <tr>
-    <th>Title</th>
-    <th>Message</th>
-    <th>Pulldown</th>
-    <th>User Name</th>
-    <th>Approved</th>
-    
-  </tr>
-  <% @advertisement_abuse.each do |advertisements| %>
-   
-    <tr id="abuse_ad_list">
-      <%= render :partial => "abuse_ad_list",:locals => {:advertisements => advertisements} %>
-    </tr>
-  
-  <% end %>
-</table>
-<div class="digg_pagination" id="abuse_Ad_pagination">
- <%= will_paginate @advertisement_abuse %>
+  <div style="float:right;margin-top: -47px;">
+    <%= form_tag search_abuse_ad_path, :method => 'get', :id => "advertisements_abuse_search" do %>
+      <%= text_field_tag :searchad, params[:searchad] ,:placeholder => "Enter search by title" %>
+      <%= submit_tag "Search", :name => nil %>
+    <% end %>  
+  </div>
+  <div id ="search_ad">
+     <%= render :partial => "search_ad",:locals => {:advertisement_abuse =>  @advertisement_abuse} %>
+  </div>
+  <div class="digg_pagination" id="abuse_Ad_pagination">
+   <%= will_paginate @advertisement_abuse %>
+  </div>
 </div>
-</div>
+
 <script type="text/javascript">
   $(function() {
     $('#abuse_ads .pagination a').attr('data-remote', 'true');
   });
 </script>
+ <script type="text/javascript">
+ $("#advertisements_abuse_search input").keyup(function() {
+    $.get($("#advertisements_abuse_search").attr("action"), $("#advertisements_abuse_search").serialize(), null, "script");
+    return false;
+  });
+ </script>
+
+<script type="text/javascript">
+   $("#advertisements_search input").keyup(function() {
+    $.get($("#advertisements_search").attr("action"), $("#advertisements_search").serialize(), null, "script");
+    return false;
+  });
+ </script>

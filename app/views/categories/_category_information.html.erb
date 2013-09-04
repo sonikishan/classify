@@ -1,12 +1,33 @@
+<table id="admin_management">
+  <tr>
+    <th>Name</th>
+    <th>Attributes</th>
+    <th>Active Status</th>
+    <th></th>
+    <th></th>
+    
+  </tr>
 
-    <td><%= link_to "#{category.name}",category%></td>
+<% @category_root.each do |category| %>
+
+<tr id="category_info_<%= category.id %>" class="sort_paginate_ajax">
+     <td><%= link_to "#{category.name}",category%></td>
     <td><%= category.characteristics.blank? ? "-" : category.characteristics.map{ |i|i.name}.join(', ') %></td>
     <td>
-    	<% if category.active_status == true %>
-      	<%= link_to "Yes",category_status_path(category),:remote => true %>
-      	<% else %>
-      	<%= link_to "No",category_status_path(category),:remote => true %>
-      	<% end %>
+      <% if category.active_status == true %>
+        <%= link_to "Yes",category_status_path(category),:remote => true %>
+        <% else %>
+        <%= link_to "No",category_status_path(category),:remote => true %>
+        <% end %>
     </td>
     <td><%= link_to 'Edit', edit_category_path(category) %></td>
     <td><%= link_to 'Destroy',destroy_category_path(category), :id => "login_popup", :rel => "facebox"%></td>
+</tr>
+<% end %>
+</table>
+
+
+<div class="digg_pagination">
+ <%= will_paginate @category_root , :inner_window => 1, :previous_label => 'Previous',:next_label => 'Next'%>
+</div>
+    

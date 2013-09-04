@@ -1,0 +1,24 @@
+<table id="admin_management">
+  <tr>
+    <th>Name</th>
+    <th>Input kind</th>
+    
+    <th>Category</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @characteristics.each do |characteristic| %>
+  <tr>
+    <td><%= characteristic.name %></td>
+    <td><%= characteristic.input_kind %></td>
+    
+    <td><%= characteristic.category.name %></td>
+    <td><%= link_to 'Edit', edit_characteristic_path(characteristic) %></td>
+    <td><%= link_to 'Destroy', characteristic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+<div class="digg_pagination">
+ <%= will_paginate @characteristics , :inner_window => 1, :previous_label => 'Previous',:next_label => 'Next'%>
+</div>

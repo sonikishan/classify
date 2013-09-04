@@ -7,14 +7,12 @@ gem 'rails', '3.2.13'
 
 gem 'mysql2'
 gem 'pg'
+gem 'taps'
 gem 'devise'
 gem 'rails_admin'
 gem 'closure_tree'
 gem 'paperclip'
 gem 'letsrate'
-
-
-
 
 gem "cancan"
 

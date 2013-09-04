@@ -2,7 +2,7 @@
   <ul>
     <% for category in Category.roots %>
       <% if category.active_status == true %>
-      <li><%= link_to category.name, category_listing_path(category) %></li>
+      <li><%= link_to category.name, category_listing_path(category.id) %></li>
       <% end %>
     <% end %>             	
   </ul>                           
@@ -18,8 +18,10 @@
     <%  @advertisements.each do |advertise| %>
       <% if advertise.category.active_status == true %>
       <div class="adbox">
-        <%= link_to image_tag(advertise.advertisement_images.first.blank? ? 'No Image' : advertise.advertisement_images.first.image.url, :size => "90x55"), advertise %>
-      <h1><%= truncate(advertise.title, :length => 12) %> <span>€  <%= advertise.min_price %> to <%= advertise.max_price %></span></h1>
+
+        <%= link_to image_tag(advertise.advertisement_images.first.blank? ? 'NoImageAvailable.jpg' : advertise.advertisement_images.first.image.url, :size => "90x55"), advertise %>
+      <h1><%= truncate(advertise.title, :length => 12) %> <span>€  <%= advertise.price %></span></h1>
+
       <p><%= truncate(strip_tags(advertise.values_xml), :length => 12) %></p> 
       <!--<p><%= raw(truncate(advertise.values_xml, :length => 12)) %></p> -->
      </div>

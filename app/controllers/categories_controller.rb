@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
-
+	helper_method :sort_column, :sort_direction
 	before_filter :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
-	before_filter :authenticate_user!, except: [:category_listing,:category_filtering] do 
+	before_filter :authenticate_user!, except: [:category_listing,:category_filtering,:price_search,:sort_column] do 
     redirect_to root_path unless current_user.admin?
   end
 
@@ -9,10 +9,11 @@ class CategoriesController < ApplicationController
 	# GET /categories.json
 	def index
 		@categories = Category.paginate(:page => params[:page], :per_page => 5)
-
+		@category_root = Category.roots.search(params[:search]).paginate(:page => params[:page], :per_page => 5)
 		respond_to do |format|
 			format.html # index.html.erb
-			format.json { render json: @categories }
+			format.js
+			# format.json { render json: @categories }
 		end
 	end
 
@@ -219,7 +220,41 @@ end
 		end
 	end
 
+	def price_search
+		@category = Category.find(params[:category_id])
+		@advertisement_characterstic = []
+		@advertisement = []
+		if !params[:default_value].blank? 
+			@advertisement_characterstic << AdvertisementCharacteristic.where("value like ? ","%#{params[:default_value][:default_value]}%")
+		end	
+		if !params[:characteristics_select][:default_value].blank? 
+			@advertisement_characterstic << AdvertisementCharacteristic.where("value like ? ","%#{params[:characteristics_select][:default_value]}%")
+		end
+		if !params[:characteristic].blank? 
+			@values =  params[:characteristic][:default_value].split(',').join(' ')
+			@values.split(' ').each do |char|
+				@advertisement_characterstic << AdvertisementCharacteristic.where("value like ? ","%#{char}%")
+			end
+		end
+		if !params[:minprice].blank? and !params[:maxprice].blank? 
+			@advertisement << Advertisement.where("price >= (?) AND price <= (?) AND advertisement_status_id not in (?)",params[:minprice],params[:maxprice],[2]).order(sort_column + " " + sort_direction)
+		end	
+		@advertisement_characterstic = @advertisement_characterstic.flatten!
+		if params[:minprice].blank? and params[:maxprice].blank? 
+			@advertisement_characterstic.each do |advertisement_characterstic|
+				@advertisement << Advertisement.where("id in (?) AND advertisement_status_id not in (?)",advertisement_characterstic.advertisement_id,[2]).order(sort_column + " " + sort_direction)
+			end
+		end
+		@advertisement = @advertisement.flatten!
+		
+		
+	end
 	def category_filtering
+		@category = Category.find(params[:id])
+		@characteristic = Characteristic.new
+		@parent = Category.find(params[:parent_id])
+		@root = @parent.root
+		@advertisement = Advertisement.order(sort_column + " " + sort_direction)
 	end
 
 	def category_status
@@ -272,5 +307,14 @@ end
 	else
 		@sub_category.update_attributes(:active_status => true)
 	end 
+	end
+	private
+
+	def sort_column
+		 Advertisement.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
+	end
+
+	def sort_direction
+	 %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
 	end
 end
